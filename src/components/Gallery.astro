@@ -1,0 +1,69 @@
+---
+const photos = [
+  {
+    src: '/images/gallery/gallery-aerial.jpg',
+    alt: 'Aerial view of Makoko floating village — traditional wooden boats on the Lagos lagoon',
+    caption: 'Makoko, Lagos',
+    span: 'lg:col-span-2 lg:row-span-2',
+  },
+  {
+    src: '/images/gallery/gallery-boats.jpg',
+    alt: 'Children smiling in colourful traditional boats in the Makoko waterways of Lagos',
+    caption: 'Local life on the water',
+    span: '',
+  },
+  {
+    src: '/images/gallery/gallery-culture.jpg',
+    alt: 'Benjamin and a traveller posing at a cultural landmark statue in Lagos',
+    caption: 'Culture & landmarks',
+    span: '',
+  },
+  {
+    src: '/images/gallery/gallery-community.jpg',
+    alt: 'A Western traveller at a local community gathering in Lagos, Nigeria',
+    caption: 'Community experiences',
+    span: '',
+  },
+  {
+    src: '/images/gallery/gallery-travellers.jpg',
+    alt: 'Benjamin with travellers enjoying a local experience in Lagos',
+    caption: 'Travellers with Benjamin',
+    span: '',
+  },
+];
+---
+
+<section id="gallery" class="py-20 lg:py-28 bg-white" aria-labelledby="gallery-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-16">
+      <div class="adire-divider mx-auto mb-6"></div>
+      <h2 id="gallery-heading" class="section-heading mb-4">
+        Nigeria through Benjamin's eyes
+      </h2>
+      <p class="section-subheading mx-auto">
+        A glimpse of what you can experience — from Lagos waterways to local culture and everyday life.
+      </p>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[260px]">
+      {photos.map((p, i) => (
+        <div class={`relative overflow-hidden rounded-2xl group ${p.span}`}>
+          <img
+            src={p.src}
+            alt={p.alt}
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onerror="this.onerror=null;this.parentElement.style.display='none';"
+          />
+          <!-- Caption overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <span class="text-white text-sm font-semibold">{p.caption}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

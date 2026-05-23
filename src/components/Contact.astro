@@ -1,0 +1,85 @@
+---
+import { SITE } from '../data/site';
+---
+
+<section id="contact" class="py-20 lg:py-28 bg-nigeria-cream" aria-labelledby="contact-heading">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-16">
+      <div class="adire-divider mx-auto mb-6"></div>
+      <h2 id="contact-heading" class="section-heading mb-4">
+        Contact Benjamin
+      </h2>
+      <p class="section-subheading mx-auto">
+        The easiest way to reach Benjamin is WhatsApp. Send a message with your travel dates, number of people, and what you would like to do in Nigeria.
+      </p>
+    </div>
+
+    <!-- Main contact block -->
+    <div class="flex flex-col lg:flex-row gap-10 items-center">
+
+      <!-- Left: WhatsApp CTA -->
+      <div class="w-full lg:w-1/2 text-center lg:text-left">
+        <div class="bg-nigeria-deep rounded-3xl p-10 relative overflow-hidden">
+          <div class="absolute inset-0 bg-adire-pattern opacity-20"></div>
+          <div class="relative">
+            <!-- Big WhatsApp icon -->
+            <div class="w-16 h-16 bg-nigeria-whatsapp rounded-2xl flex items-center justify-center mb-6 mx-auto lg:mx-0 shadow-whatsapp">
+              <svg class="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+
+            <h3 class="font-display text-2xl font-bold text-white mb-2">
+              WhatsApp Benjamin directly
+            </h3>
+            <p class="text-white/70 text-sm leading-relaxed mb-6">
+              Click the button below and a WhatsApp conversation will open with a message already filled in. Just send it and Benjamin will reply.
+            </p>
+
+            <a
+              href={SITE.whatsappUrl}
+              aria-label="Contact Benjamin on WhatsApp now"
+              class="inline-flex items-center gap-3 bg-nigeria-whatsapp text-white font-bold px-8 py-4 rounded-full shadow-whatsapp hover:bg-green-400 transition-all duration-200 text-base w-full justify-center mb-4"
+            >
+              <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              WhatsApp Benjamin now
+            </a>
+
+            <p class="text-white/50 text-sm text-center">
+              {SITE.phoneDisplay}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: what to include checklist -->
+      <div class="w-full lg:w-1/2">
+        <h3 class="font-display text-xl font-bold text-nigeria-charcoal mb-4">
+          What to include in your message
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          To get a useful response quickly, include these details when you first message Benjamin:
+        </p>
+        <ul class="space-y-4">
+          {[
+            { text: 'Your travel dates (when you arrive and leave)', icon: '📅' },
+            { text: 'Number of travellers in your group', icon: '👥' },
+            { text: 'Where you arrive in Nigeria (Lagos, Abuja, etc.)', icon: '✈️' },
+            { text: 'What you want to see or do', icon: '🗺️' },
+            { text: 'Whether you need airport pickup help', icon: '🚖' },
+            { text: 'Whether you need a visa invitation letter', icon: '📋' },
+          ].map(item => (
+            <li class="flex items-start gap-4 bg-white rounded-xl p-4 shadow-card">
+              <span class="text-xl flex-shrink-0 mt-0.5" aria-hidden="true">{item.icon}</span>
+              <span class="text-gray-600 text-sm leading-relaxed">{item.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+import { SITE } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = `${SITE.name} | Private Guide in Lagos and Nigeria`,
+  description = SITE.description,
+  ogImage = '/images/hero/hero.jpg',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Nigeria guide, Lagos guide, private guide Nigeria, Lagos tour guide, Nigeria travel guide, Benjamin Nigeria guide, Nigeria visa invitation letter" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={SITE.ogTitle} />
+    <meta property="og:description" content={SITE.ogDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={SITE.siteUrl} />
+    <meta property="og:image" content={`${SITE.siteUrl}${ogImage}`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={SITE.ogTitle} />
+    <meta name="twitter:description" content={SITE.ogDescription} />
+    <meta name="twitter:image" content={`${SITE.siteUrl}${ogImage}`} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": SITE.name,
+      "description": "Private guiding service in Nigeria with Adebayo Benjamin.",
+      "telephone": "+2349065102421",
+      "areaServed": "Nigeria",
+      "url": SITE.siteUrl,
+      "priceRange": "$50/day",
+      "image": `${SITE.siteUrl}/images/hero/hero.jpg`,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+2349065102421",
+        "availableLanguage": "English"
+      }
+    })} />
+
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Preload hero image -->
+    <link rel="preload" as="image" href="/images/hero/hero.jpg" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

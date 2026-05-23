@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-nigeria-charcoal bg-nigeria-cream antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-nigeria-fresh;
+  }
+}
+
+@layer components {
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-3 bg-nigeria-whatsapp text-white font-semibold px-6 py-3 rounded-full shadow-whatsapp hover:bg-green-500 hover:shadow-lg transition-all duration-200 active:scale-95 focus-visible:outline-nigeria-fresh;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-nigeria-deep text-nigeria-deep font-semibold px-6 py-3 rounded-full hover:bg-nigeria-deep hover:text-white transition-all duration-200 active:scale-95;
+  }
+
+  .btn-whatsapp-sm {
+    @apply inline-flex items-center gap-2 bg-nigeria-whatsapp text-white font-semibold px-4 py-2 rounded-full text-sm shadow-whatsapp hover:bg-green-500 transition-all duration-200 active:scale-95;
+  }
+
+  .section-heading {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold text-nigeria-charcoal leading-tight;
+  }
+
+  .section-subheading {
+    @apply text-lg text-gray-600 leading-relaxed max-w-2xl;
+  }
+
+  .card-base {
+    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden;
+  }
+
+  .adire-divider {
+    @apply w-16 h-1 rounded-full bg-nigeria-clay;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #0B5D3B;
+  border-radius: 4px;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease;
+}

@@ -1,0 +1,64 @@
+---
+import { SITE } from '../data/site';
+
+const helpItems = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
+    title: 'Before you arrive',
+    body: 'Ask questions about timing, transport, airport arrival, safety, what to bring, and what is realistic for your dates. Benjamin is easy to reach on WhatsApp.',
+    cta: 'Ask a question',
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+    title: 'On the ground in Nigeria',
+    body: 'Benjamin can help you move around more confidently and avoid common visitor mistakes — transport, prices, local customs, and places worth visiting.',
+    cta: 'Plan a day with Benjamin',
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`,
+    title: 'For your Nigeria visa',
+    body: 'Ask about letter of invitation support if this is needed for your visa application. Benjamin can explain what information is required and what support he can provide.',
+    cta: 'Ask about visa support',
+  },
+];
+---
+
+<section class="py-20 lg:py-28 bg-nigeria-deep relative overflow-hidden" aria-labelledby="practical-heading">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-16">
+      <div class="w-16 h-1 rounded-full bg-nigeria-clay mx-auto mb-6"></div>
+      <h2 id="practical-heading" class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
+        Practical help before and during your trip
+      </h2>
+      <p class="text-white/70 text-lg leading-relaxed max-w-2xl mx-auto">
+        Benjamin is available to answer questions before you arrive, help you navigate on the ground, and provide visa support if needed.
+      </p>
+    </div>
+
+    <!-- Help cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {helpItems.map(item => (
+        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/15 transition-colors duration-300">
+          <div class="w-14 h-14 rounded-xl bg-nigeria-sand text-nigeria-deep flex items-center justify-center mb-6" set:html={item.icon} aria-hidden="true" />
+          <h3 class="font-display text-xl font-bold text-white mb-3">{item.title}</h3>
+          <p class="text-white/70 text-sm leading-relaxed mb-6">{item.body}</p>
+          <a
+            href={SITE.whatsappUrl}
+            aria-label={`${item.cta} — contact Benjamin on WhatsApp`}
+            class="inline-flex items-center gap-2 text-nigeria-whatsapp hover:text-green-300 font-semibold text-sm transition-colors"
+          >
+            {item.cta}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
