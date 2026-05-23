@@ -4,15 +4,17 @@ import { SITE } from '../data/site';
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
   <!-- Hero image -->
+  <!-- Hero image source: Unsplash — people wearing life jackets on a boat in Lagos, Nigeria
+       https://unsplash.com/photos/people-wearing-life-jackets-on-a-boat-ikRmcuMrW5k -->
   <img
-    src="/images/hero/hero.jpg"
-    alt="Benjamin, private guide in Nigeria, with a happy traveller in Lagos"
+    src="/images/hero/lagos-boat-travellers.jpg"
+    alt="Travellers on a boat in Lagos, Nigeria"
     fetchpriority="high"
-    class="absolute inset-0 w-full h-full object-cover object-center"
+    class="absolute inset-0 w-full h-full object-cover object-[center_40%]"
   />
 
-  <!-- Dark gradient overlay -->
-  <div class="absolute inset-0 bg-gradient-to-b from-nigeria-charcoal/70 via-nigeria-charcoal/50 to-nigeria-charcoal/80"></div>
+  <!-- Dark gradient overlay — strengthened slightly to ensure text readability over the bright window area -->
+  <div class="absolute inset-0 bg-gradient-to-b from-nigeria-charcoal/75 via-nigeria-charcoal/55 to-nigeria-charcoal/85"></div>
 
   <!-- Adire-inspired pattern overlay -->
   <div class="absolute inset-0 bg-adire-pattern opacity-20"></div>
