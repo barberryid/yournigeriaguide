@@ -39,8 +39,9 @@ const services = [
     accent: 'nigeria-deep',
   },
   {
-    image: '/images/services/visa.jpg',
-    imageAlt: 'Visa invitation letter support for Nigeria travel',
+    image: '/images/services/visa-invitation-letter.jpg',
+    imageAlt: 'Travel documents and passport for visa invitation letter support',
+    imagePosition: 'object-[center_30%]', // portrait image — crop to passport area. Photo: Taryn Elliott via Pexels — pexels.com/photo/5405596
     title: 'Visa Invitation Letter',
     subtitle: 'Support for your visa process',
     description: 'If you need a letter of invitation for your Nigeria visa application, Benjamin can help prepare one. Ask on WhatsApp what information is needed.',
@@ -74,7 +75,7 @@ const services = [
               src={s.image}
               alt={s.imageAlt}
               loading="lazy"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              class={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${s.imagePosition ?? 'object-center'}`}
               onerror="this.onerror=null;this.src='/images/hero/hero.jpg';"
             />
             <!-- Gradient overlay -->
