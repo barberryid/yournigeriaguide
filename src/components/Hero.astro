@@ -2,7 +2,7 @@
 import { SITE } from '../data/site';
 ---
 
-<section class="relative min-h-screen flex flex-col justify-end overflow-hidden" aria-label="Hero section">
+<section class="relative min-h-screen flex flex-col justify-between overflow-hidden" aria-label="Hero section">
   <!-- Hero image: Benjamin on a Lagos rooftop, golden hour -->
   <img
     src="/images/hero/benjamin-rooftop.jpg"
@@ -11,34 +11,27 @@ import { SITE } from '../data/site';
     class="absolute inset-0 w-full h-full object-cover object-[center_20%]"
   />
 
-  <!-- Gradient rises from the bottom so the face stays visible at top,
-       text at bottom sits on a dark base for readability -->
-  <div class="absolute inset-0 bg-gradient-to-t from-nigeria-charcoal/90 via-nigeria-charcoal/40 to-nigeria-charcoal/10"></div>
+  <!-- Gradient dark at top and bottom, transparent in middle so face stays visible -->
+  <div class="absolute inset-0 bg-gradient-to-b from-nigeria-charcoal/75 via-transparent to-nigeria-charcoal/90"></div>
 
   <!-- Adire-inspired pattern overlay -->
   <div class="absolute inset-0 bg-adire-pattern opacity-15"></div>
 
-  <!-- Content — pushed to bottom so Benjamin's face shows above -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-64 text-center w-full">
-
-    <!-- Badge -->
-    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium px-4 py-2 rounded-full mb-6">
+  <!-- TOP: headline above Benjamin's head -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 text-center w-full">
+    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium px-4 py-2 rounded-full mb-5">
       <span class="w-2 h-2 rounded-full bg-nigeria-whatsapp animate-pulse-slow inline-block"></span>
       Independent local guide · Lagos, Nigeria
     </div>
 
-    <!-- Headline -->
-    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-5 max-w-4xl mx-auto">
+    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight max-w-4xl mx-auto">
       Your trusted private<br class="hidden sm:block" /> guide in Nigeria
     </h1>
+  </div>
 
-    <!-- Subheading -->
-    <p class="text-lg sm:text-xl text-white/85 leading-relaxed max-w-2xl mx-auto mb-8">
-      Explore Lagos and Nigeria with Benjamin — a friendly local guide who helps visitors save money, move around confidently, and experience the country with local knowledge.
-    </p>
-
-    <!-- CTA buttons -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+  <!-- BOTTOM: CTAs and trust badges below Benjamin -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-center w-full">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
       <a
         href={SITE.whatsappUrl}
         aria-label="Contact Benjamin on WhatsApp"
@@ -60,7 +53,6 @@ import { SITE } from '../data/site';
       </a>
     </div>
 
-    <!-- Trust badges -->
     <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
       {[
         { icon: '📍', text: 'Local Nigerian guide' },
@@ -74,12 +66,5 @@ import { SITE } from '../data/site';
         </div>
       ))}
     </div>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/40 animate-bounce-slow" aria-hidden="true">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-    </svg>
   </div>
 </section>
