@@ -10,6 +10,7 @@ const services = [
     description: 'Explore Lagos with Benjamin as your guide — markets, neighbourhoods, culture, food, art, beaches, and local life tailored to your interests.',
     cta: 'Ask about a Lagos tour',
     accent: 'nigeria-deep',
+    learnMore: { href: '/lagos-private-guide/', label: 'Lagos private guide services' },
   },
   {
     image: '/images/services/tour-culture.jpg',
@@ -47,6 +48,7 @@ const services = [
     description: 'If you need a letter of invitation for your Nigeria visa application, Benjamin can help prepare one. Ask on WhatsApp what information is needed.',
     cta: 'Ask about visa letter support',
     accent: 'nigeria-clay',
+    learnMore: { href: '/nigeria-visa-invitation-letter/', label: 'Nigeria visa invitation letter support' },
   },
 ];
 ---
@@ -100,6 +102,17 @@ const services = [
               </svg>
               {s.cta}
             </a>
+            {s.learnMore && (
+              <a
+                href={s.learnMore.href}
+                class="mt-3 inline-flex items-center gap-1 text-nigeria-deep font-semibold text-sm hover:underline self-start"
+              >
+                {s.learnMore.label}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            )}
           </div>
         </article>
       ))}

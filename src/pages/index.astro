@@ -9,12 +9,13 @@ import Pricing from '../components/Pricing.astro';
 import Reviews from '../components/Reviews.astro';
 import Gallery from '../components/Gallery.astro';
 import PracticalHelp from '../components/PracticalHelp.astro';
+import Faq from '../components/Faq.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import StickyWhatsApp from '../components/StickyWhatsApp.astro';
 ---
 
-<BaseLayout>
+<BaseLayout preloadImage="/images/hero/benjamin-rooftop.jpg">
   <Header />
   <main>
     <Hero />
@@ -25,6 +26,7 @@ import StickyWhatsApp from '../components/StickyWhatsApp.astro';
     <Reviews />
     <Gallery />
     <PracticalHelp />
+    <Faq />
     <Contact />
   </main>
   <Footer />

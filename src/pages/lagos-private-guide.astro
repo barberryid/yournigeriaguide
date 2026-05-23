@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyWhatsApp from '../components/StickyWhatsApp.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { SITE } from '../data/site';
+
+const title = 'Lagos Private Guide | Lagos Tours with Benjamin';
+const description =
+  'Book a private Lagos guide with Adebayo Benjamin. Get help with Lagos tours, arrival logistics, local transport, markets, food, beaches, and custom sightseeing in Nigeria.';
+
+const helps = [
+  {
+    title: 'Lagos day tours',
+    body: 'Spend a day exploring Lagos with a local guide. Benjamin can shape the day around what interests you — markets, neighbourhoods, art, music, the waterways of Makoko, viewpoints, and local food.',
+  },
+  {
+    title: 'Airport arrival support',
+    body: 'Arriving in Lagos for the first time can feel overwhelming. Benjamin can help with airport arrival, transport into the city, SIM card advice, money exchange guidance, and getting settled on your first day.',
+  },
+  {
+    title: 'Food, markets and local culture',
+    body: 'Experience Nigerian food, street life, and busy local markets with someone who knows them well. Benjamin helps you taste, see, and understand Lagos beyond the usual tourist surface.',
+  },
+  {
+    title: 'Getting around safely',
+    body: 'Benjamin helps you move around Lagos more confidently — understanding transport options, fair prices, timing, and local customs so you can avoid common visitor mistakes.',
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main>
+    <!-- Hero band -->
+    <section class="relative bg-nigeria-deep text-white overflow-hidden" aria-label="Page introduction">
+      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-16 md:pb-20">
+        <nav class="text-sm text-white/60 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white">Home</a>
+          <span class="mx-2">/</span>
+          <span class="text-white/80">Lagos Private Guide</span>
+        </nav>
+        <div class="adire-divider mb-6"></div>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
+          Private guide in Lagos, Nigeria
+        </h1>
+        <p class="text-white/80 text-lg leading-relaxed max-w-2xl mb-8">
+          Explore Lagos with Adebayo Benjamin, a trusted local private guide. From Lagos day tours and airport arrival help to markets, food, beaches, and custom sightseeing, Benjamin helps you experience the city with confidence. The easiest way to plan is on WhatsApp.
+        </p>
+        <WhatsAppButton label="Plan your Lagos trip on WhatsApp" />
+      </div>
+    </section>
+
+    <!-- What Benjamin can help with -->
+    <section class="py-20 lg:py-28 bg-white" aria-labelledby="help-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <div class="adire-divider mx-auto mb-6"></div>
+          <h2 id="help-heading" class="section-heading mb-4">What Benjamin can help with in Lagos</h2>
+          <p class="section-subheading mx-auto">
+            Flexible private guiding in Lagos, planned around your dates, your interests, and your budget.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {helps.map((h) => (
+            <div class="card-base p-8">
+              <h3 class="font-display text-xl font-bold text-nigeria-charcoal mb-3">{h.title}</h3>
+              <p class="text-gray-600 text-base leading-relaxed">{h.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing snapshot -->
+    <section class="py-16 bg-nigeria-sand relative overflow-hidden" aria-labelledby="price-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 id="price-heading" class="section-heading mb-4">Simple daily pricing</h2>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          Benjamin's guiding fee is <strong>USD 50 per day</strong>. Extra costs such as transport, meals, entrance fees, accommodation, and special activities are separate. Message Benjamin with your dates, group size, and plans so he can explain what to expect.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-20 lg:py-28 bg-nigeria-deep relative overflow-hidden" aria-labelledby="contact-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div class="adire-divider mx-auto mb-6"></div>
+        <h2 id="contact-heading" class="font-display text-3xl md:text-4xl font-bold mb-4">How to contact Benjamin on WhatsApp</h2>
+        <p class="text-white/80 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+          Send Benjamin a message with your travel dates, number of travellers, where you arrive in Nigeria, and what you would like to do in Lagos. He will reply with practical advice.
+        </p>
+        <WhatsAppButton label="Message Benjamin on WhatsApp" />
+        <p class="text-white/50 text-sm mt-4">{SITE.phoneDisplay}</p>
+        <p class="text-white/70 text-sm mt-6">
+          Also see <a href="/nigeria-visa-invitation-letter/" class="underline hover:text-white">Nigeria visa invitation letter support</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyWhatsApp />
+</BaseLayout>

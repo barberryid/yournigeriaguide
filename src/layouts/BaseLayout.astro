@@ -5,14 +5,67 @@ import { SITE } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
+  canonical?: string;
+  preloadImage?: string;
 }
 
 const {
-  title = `${SITE.name} | Private Guide in Lagos and Nigeria`,
+  title = SITE.title,
   description = SITE.description,
-  ogImage = '/images/hero/hero.jpg',
+  ogTitle,
+  ogDescription,
+  ogImage = SITE.ogImage,
+  canonical,
+  preloadImage,
 } = Astro.props;
+
+// Build absolute, canonical URLs from the canonical domain.
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, SITE.domain).href;
+const ogImageURL = new URL(ogImage, SITE.domain).href;
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDescription = ogDescription ?? description;
+
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE.domain}/#business`,
+  name: SITE.name,
+  alternateName: 'Adebayo Benjamin Nigeria Guide',
+  url: SITE.siteUrl,
+  description:
+    'Private guiding service in Lagos and Nigeria with Adebayo Benjamin.',
+  image: ogImageURL,
+  telephone: SITE.phoneE164,
+  priceRange: '$$',
+  areaServed: [
+    { '@type': 'Country', name: 'Nigeria' },
+    { '@type': 'City', name: 'Lagos' },
+  ],
+  founder: { '@type': 'Person', name: SITE.guideFullName },
+  makesOffer: [
+    {
+      '@type': 'Offer',
+      name: 'Private guiding in Nigeria',
+      description: 'Private guide service for visitors to Lagos and Nigeria.',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Nigeria visa invitation letter support',
+      description:
+        'Support with a letter of invitation for travellers who need it for their Nigeria visa process.',
+    },
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: SITE.phoneE164,
+    contactType: 'customer service',
+    availableLanguage: ['English'],
+    areaServed: 'NG',
+  },
+};
 ---
 
 <!doctype html>
@@ -21,40 +74,27 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="keywords" content="Nigeria guide, Lagos guide, private guide Nigeria, Lagos tour guide, Nigeria travel guide, Benjamin Nigeria guide, Nigeria visa invitation letter" />
+    <meta name="keywords" content="Nigeria guide, Lagos guide, private guide Nigeria, Lagos tour guide, Nigeria travel guide, Adebayo Benjamin Nigeria guide, Nigeria visa invitation letter" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
-    <meta property="og:title" content={SITE.ogTitle} />
-    <meta property="og:description" content={SITE.ogDescription} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={SITE.siteUrl} />
-    <meta property="og:image" content={`${SITE.siteUrl}${ogImage}`} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content={SITE.ogImageAlt} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={SITE.ogTitle} />
-    <meta name="twitter:description" content={SITE.ogDescription} />
-    <meta name="twitter:image" content={`${SITE.siteUrl}${ogImage}`} />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
+    <meta name="twitter:image" content={ogImageURL} />
 
-    <!-- Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": SITE.name,
-      "description": "Private guiding service in Nigeria with Adebayo Benjamin.",
-      "telephone": "+2349065102421",
-      "areaServed": "Nigeria",
-      "url": SITE.siteUrl,
-      "priceRange": "$50/day",
-      "image": `${SITE.siteUrl}/images/hero/hero.jpg`,
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "telephone": "+2349065102421",
-        "availableLanguage": "English"
-      }
-    })} />
+    <!-- Structured Data: LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
 
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -62,8 +102,7 @@ const {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Preload hero image -->
-    <link rel="preload" as="image" href="/images/hero/benjamin-rooftop.jpg" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
   </head>
   <body>
     <slot />

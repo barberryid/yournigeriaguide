@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.yournigeriaguide.com/sitemap-index.xml

@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyWhatsApp from '../components/StickyWhatsApp.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { SITE } from '../data/site';
+
+const title = 'Nigeria Visa Invitation Letter Support | Your Nigeria Guide';
+const description =
+  'Ask Benjamin from Your Nigeria Guide about Nigeria visa invitation letter support and practical travel planning help before your trip.';
+
+const steps = [
+  {
+    title: 'Tell Benjamin your travel plans',
+    body: 'Message Benjamin on WhatsApp with your travel dates, the purpose of your visit, and where you plan to stay. This helps him understand what kind of support you need.',
+  },
+  {
+    title: 'Share the required details',
+    body: 'Benjamin will explain what information is typically needed for a letter of invitation and what he can provide to support your application.',
+  },
+  {
+    title: 'Confirm the rules officially',
+    body: 'Always check the current visa requirements with official Nigerian immigration, your nearest Nigerian embassy, or a consulate before booking non-refundable travel.',
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main>
+    <!-- Hero band -->
+    <section class="relative bg-nigeria-deep text-white overflow-hidden" aria-label="Page introduction">
+      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-16 md:pb-20">
+        <nav class="text-sm text-white/60 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white">Home</a>
+          <span class="mx-2">/</span>
+          <span class="text-white/80">Nigeria Visa Invitation Letter</span>
+        </nav>
+        <div class="adire-divider mb-6"></div>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
+          Nigeria visa invitation letter support
+        </h1>
+        <p class="text-white/80 text-lg leading-relaxed max-w-2xl mb-8">
+          Benjamin from Your Nigeria Guide can help with a letter of invitation for travellers who need support for their Nigeria visa process, along with practical travel planning before your trip.
+        </p>
+        <WhatsAppButton label="Ask Benjamin about visa support" />
+      </div>
+    </section>
+
+    <!-- Compliance note -->
+    <section class="py-16 bg-white" aria-labelledby="how-heading">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="adire-divider mb-6"></div>
+        <h2 id="how-heading" class="section-heading mb-4">How Benjamin can help</h2>
+        <p class="text-gray-600 text-base leading-relaxed mb-6">
+          Benjamin can help with a letter of invitation for travellers who need support for their Nigeria visa process. Visa rules can change, so always confirm current requirements with official Nigerian immigration, your nearest Nigerian embassy, or a consulate before booking travel.
+        </p>
+
+        <div class="bg-nigeria-cream border-l-4 border-nigeria-clay rounded-2xl p-6">
+          <p class="text-nigeria-charcoal text-sm leading-relaxed">
+            <strong>Please note:</strong> a letter of invitation is supporting documentation only. It does not guarantee that a visa will be approved. Visa decisions are made by Nigerian immigration authorities. Always confirm the current process and requirements through official sources before you travel.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="py-16 lg:py-20 bg-nigeria-sand relative overflow-hidden" aria-labelledby="steps-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <h2 id="steps-heading" class="section-heading mb-4">How to get started</h2>
+          <p class="section-subheading mx-auto">A simple way to ask Benjamin about visa invitation letter support.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {steps.map((s, i) => (
+            <div class="card-base p-8">
+              <div class="w-10 h-10 rounded-full bg-nigeria-deep text-white flex items-center justify-center font-display font-bold mb-4">{i + 1}</div>
+              <h3 class="font-display text-lg font-bold text-nigeria-charcoal mb-3">{s.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-20 lg:py-28 bg-nigeria-deep relative overflow-hidden" aria-labelledby="contact-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div class="adire-divider mx-auto mb-6"></div>
+        <h2 id="contact-heading" class="font-display text-3xl md:text-4xl font-bold mb-4">Ask Benjamin on WhatsApp</h2>
+        <p class="text-white/80 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+          Message Benjamin with your travel dates and questions about visa invitation letter support. He will explain what information is needed and how he can help.
+        </p>
+        <WhatsAppButton label="Message Benjamin on WhatsApp" />
+        <p class="text-white/50 text-sm mt-4">{SITE.phoneDisplay}</p>
+        <p class="text-white/70 text-sm mt-6">
+          Planning a trip too? See <a href="/lagos-private-guide/" class="underline hover:text-white">private guide services in Lagos</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyWhatsApp />
+</BaseLayout>

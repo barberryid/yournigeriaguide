@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyWhatsApp from '../components/StickyWhatsApp.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { SITE } from '../data/site';
+
+const title = 'Contact Benjamin on WhatsApp | Your Nigeria Guide';
+const description =
+  'Contact Adebayo Benjamin from Your Nigeria Guide on WhatsApp to ask about Lagos tours, private guiding in Nigeria, pricing, availability, and visa invitation letter support.';
+
+const include = [
+  { icon: '📅', text: 'Your travel dates (when you arrive and leave)' },
+  { icon: '👥', text: 'Number of travellers in your group' },
+  { icon: '✈️', text: 'Where you arrive in Nigeria (Lagos, Abuja, etc.)' },
+  { icon: '🗺️', text: 'What you want to see or do' },
+  { icon: '🚖', text: 'Whether you need airport pickup help' },
+  { icon: '📋', text: 'Whether you need a visa invitation letter' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main>
+    <!-- Hero band -->
+    <section class="relative bg-nigeria-deep text-white overflow-hidden" aria-label="Page introduction">
+      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-16 md:pb-20 text-center">
+        <nav class="text-sm text-white/60 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white">Home</a>
+          <span class="mx-2">/</span>
+          <span class="text-white/80">Contact</span>
+        </nav>
+        <div class="adire-divider mx-auto mb-6"></div>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
+          Contact Benjamin on WhatsApp
+        </h1>
+        <p class="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+          The easiest way to reach Adebayo Benjamin is WhatsApp. Ask about Lagos tours, private guiding in Nigeria, pricing, availability, and visa invitation letter support.
+        </p>
+        <WhatsAppButton label="WhatsApp Benjamin now" className="btn-whatsapp text-lg px-8 py-4" />
+        <p class="text-white/60 text-sm mt-4">{SITE.phoneDisplay}</p>
+      </div>
+    </section>
+
+    <!-- What to include -->
+    <section class="py-20 lg:py-28 bg-white" aria-labelledby="include-heading">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="adire-divider mx-auto mb-6"></div>
+          <h2 id="include-heading" class="section-heading mb-4">What to include in your message</h2>
+          <p class="section-subheading mx-auto">
+            To get a useful reply quickly, include these details when you first message Benjamin.
+          </p>
+        </div>
+
+        <ul class="space-y-4">
+          {include.map((item) => (
+            <li class="flex items-start gap-4 bg-nigeria-cream rounded-xl p-4 shadow-card">
+              <span class="text-xl flex-shrink-0 mt-0.5" aria-hidden="true">{item.icon}</span>
+              <span class="text-gray-700 text-base leading-relaxed">{item.text}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="text-center mt-12">
+          <WhatsAppButton label="Send Benjamin a message" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick links -->
+    <section class="py-14 bg-nigeria-sand relative overflow-hidden" aria-labelledby="more-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 id="more-heading" class="font-display text-2xl font-bold text-nigeria-charcoal mb-4">Explore more</h2>
+        <p class="text-gray-700 text-base leading-relaxed">
+          Learn about <a href="/lagos-private-guide/" class="text-nigeria-deep font-semibold underline">private guide services in Lagos</a> or
+          <a href="/nigeria-visa-invitation-letter/" class="text-nigeria-deep font-semibold underline"> Nigeria visa invitation letter support</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyWhatsApp />
+</BaseLayout>

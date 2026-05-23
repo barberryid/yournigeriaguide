@@ -1,12 +1,19 @@
 ---
 import { SITE } from '../data/site';
 
-const navLinks = [
-  { href: '#why-benjamin', label: 'Why Benjamin' },
-  { href: '#tours', label: 'Tours' },
-  { href: '#pricing', label: 'Prices' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#contact', label: 'Contact' },
+const pageLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/lagos-private-guide/', label: 'Private Guide in Lagos' },
+  { href: '/nigeria-visa-invitation-letter/', label: 'Nigeria Visa Invitation Letter' },
+  { href: '/contact/', label: 'Contact Benjamin on WhatsApp' },
+];
+
+const sectionLinks = [
+  { href: '/#why-benjamin', label: 'Why Benjamin' },
+  { href: '/#tours', label: 'Tours' },
+  { href: '/#pricing', label: 'Prices' },
+  { href: '/#reviews', label: 'Reviews' },
+  { href: '/#faq', label: 'FAQ' },
 ];
 ---
 
@@ -23,7 +30,7 @@ const navLinks = [
       <div class="md:col-span-1">
         <p class="font-display text-2xl font-bold text-white mb-2">Your Nigeria Guide</p>
         <p class="text-white/60 text-sm leading-relaxed mb-5">
-          Private guiding in Nigeria with Adebayo Benjamin. Friendly, local, and straightforward.
+          Your Nigeria Guide is a private guiding service in Lagos and Nigeria with Adebayo Benjamin. Contact Benjamin on WhatsApp for Lagos tours, custom Nigeria itineraries, airport arrival help, and visa invitation letter support.
         </p>
         <p class="text-nigeria-sand text-sm font-medium">{SITE.phoneDisplay}</p>
         <a
@@ -38,12 +45,12 @@ const navLinks = [
         </a>
       </div>
 
-      <!-- Navigation -->
+      <!-- Explore pages -->
       <div>
-        <p class="text-white/40 text-xs font-semibold uppercase tracking-widest mb-4">Navigation</p>
-        <nav aria-label="Footer navigation">
+        <p class="text-white/40 text-xs font-semibold uppercase tracking-widest mb-4">Explore</p>
+        <nav aria-label="Footer page navigation">
           <ul class="space-y-2">
-            {navLinks.map(link => (
+            {pageLinks.map(link => (
               <li>
                 <a
                   href={link.href}
@@ -57,16 +64,23 @@ const navLinks = [
         </nav>
       </div>
 
-      <!-- Services -->
+      <!-- On this page -->
       <div>
-        <p class="text-white/40 text-xs font-semibold uppercase tracking-widest mb-4">Services</p>
-        <ul class="space-y-2 text-white/70 text-sm">
-          <li>Lagos Day Tours</li>
-          <li>Airport Pickup</li>
-          <li>Custom Itineraries</li>
-          <li>Culture & Local Life</li>
-          <li>Visa Invitation Letter</li>
-        </ul>
+        <p class="text-white/40 text-xs font-semibold uppercase tracking-widest mb-4">On this page</p>
+        <nav aria-label="Footer section navigation">
+          <ul class="space-y-2">
+            {sectionLinks.map(link => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-white/70 hover:text-white text-sm transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
 
