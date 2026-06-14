@@ -6,103 +6,568 @@ import StickyWhatsApp from '../components/StickyWhatsApp.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { SITE } from '../data/site';
 
-const title = 'Nigeria Visa Invitation Letter Support | Your Nigeria Guide';
+const title =
+  'Nigeria Visa Information | Tourist e-Visa, Landing Card & Invitation Letter Help';
 const description =
-  'Ask Benjamin from Your Nigeria Guide about Nigeria visa invitation letter support and practical travel planning help before your trip.';
+  'Practical Nigeria visa information for travellers: tourist e-Visa documents, landing card, invitation letter help, arrival preparation and WhatsApp support from Benjamin in Lagos.';
+const canonical = `${SITE.domain}/nigeria-visa-invitation-letter/`;
+
+const visaMessage =
+  'Hello Benjamin, I am planning a trip to Nigeria. My travel dates are [dates]. My passport country is [country]. I arrive in [Lagos / Abuja / other city]. We are [number] travellers. Can you help me understand the practical visa and arrival details, including invitation letter support if needed?';
+const visaWhatsappUrl = `https://wa.me/${SITE.phoneE164.replace('+', '')}?text=${encodeURIComponent(visaMessage)}`;
+
+const officialLinks = [
+  {
+    href: 'https://evisa.immigration.gov.ng/',
+    label: 'Official Nigeria e-Visa portal',
+    body: 'Apply through the Nigeria Immigration Service e-Visa portal.',
+  },
+  {
+    href: 'https://lecard.immigration.gov.ng/',
+    label: 'Official Landing and Exit Card portal',
+    body: 'Complete and save your landing card before travel.',
+  },
+  {
+    href: 'https://immigration.gov.ng/nigerian-visa/',
+    label: 'Nigeria Immigration Service visa information',
+    body: 'Check the current official visa category and requirements.',
+  },
+];
+
+const documents = [
+  {
+    title: 'Passport data page',
+    body: 'Your passport should normally have at least 6 months validity and blank pages.',
+  },
+  {
+    title: 'Passport photo',
+    body: 'Use a recent passport-style photo that meets the upload requirements.',
+  },
+  {
+    title: 'Hotel booking or accommodation details',
+    body: 'Recent travellers used accommodation details matching their travel dates. If staying with a host, you may need host details instead.',
+  },
+  {
+    title: 'Inbound and outbound flight booking',
+    body: 'Prepare proof of arrival and departure from Nigeria. Immigration may ask to see your onward or return ticket when you arrive.',
+  },
+  {
+    title: 'Bank statements or evidence of funds',
+    body: 'Recent travellers reported uploading 6 months of bank statements. One report recommended showing at least USD 2,000 available, although the official portal may not publish a fixed minimum.',
+  },
+  {
+    title: 'Invitation letter, where relevant',
+    body: 'For tourism, a letter may not always be required if you are using hotel bookings. Host-based stays, private guide arrangements or complex trips may make a clear support letter useful.',
+  },
+];
 
 const steps = [
   {
-    title: 'Tell Benjamin your travel plans',
-    body: 'Message Benjamin on WhatsApp with your travel dates, the purpose of your visit, and where you plan to stay. This helps him understand what kind of support you need.',
+    title: 'Check the official visa category',
+    body: 'Go to the Nigeria Immigration Service visa information page and confirm which visa type fits your trip.',
   },
   {
-    title: 'Share the required details',
-    body: 'Benjamin will explain what information is typically needed for a letter of invitation and what he can provide to support your application.',
+    title: 'Prepare your documents',
+    body: 'Make sure your passport photo, passport scan, accommodation proof, flight booking and financial evidence are clear and consistent.',
   },
   {
-    title: 'Confirm the rules officially',
-    body: 'Always check the current visa requirements with official Nigerian immigration, your nearest Nigerian embassy, or a consulate before booking non-refundable travel.',
+    title: 'Apply through the official e-Visa portal',
+    body: 'Use the official portal at evisa.immigration.gov.ng. Avoid relying only on third-party sites unless you deliberately choose to pay for assistance.',
+  },
+  {
+    title: 'Pay the fee if required',
+    body: 'Fees can vary by nationality and visa type. Recent traveller reports show very different costs depending on passport.',
+  },
+  {
+    title: 'Watch for the approval email or portal update',
+    body: 'Some travellers received approval very quickly, but do not leave this until the last minute.',
+  },
+  {
+    title: 'Read the visa document carefully',
+    body: 'Check the validity period, permitted stay, entry conditions and any notes on the second page of the visa document.',
+  },
+  {
+    title: 'Complete the landing card before travelling',
+    body: 'Before arrival, complete the Nigeria landing card online and save a copy with your travel documents.',
   },
 ];
+
+const carryItems = [
+  'Printed or saved Nigeria e-Visa',
+  'Passport',
+  'Landing card confirmation',
+  'Hotel booking or host address',
+  'Return or onward flight booking',
+  'Travel itinerary',
+  'Benjamin\'s contact details if he is meeting or assisting you',
+  'Yellow fever certificate, if required for your journey',
+];
+
+const helpItems = [
+  'Understanding what travel details you may need before applying',
+  'Planning a realistic Lagos or Nigeria itinerary',
+  'Providing local contact information where appropriate',
+  'Invitation letter support where suitable',
+  'Airport arrival help in Lagos',
+  'Transport and first-day orientation',
+  'Practical advice on hotels, SIM cards, money exchange and moving around safely',
+];
+
+const mistakes = [
+  'Do not apply with unclear document scans.',
+  'Make sure your hotel booking and flight dates are consistent.',
+  'Do not assume an invitation letter replaces a hotel booking or return ticket.',
+  'Do not wait until the last minute, even though some travellers received quick approvals.',
+  'Do not forget the landing card.',
+  'Do not arrive without proof of accommodation and onward or return travel.',
+  'Do not rely only on cash or international cards after arrival; payment in Nigeria can be complicated.',
+];
+
+const faqs = [
+  {
+    q: 'Where do I apply for a Nigeria tourist e-Visa?',
+    a: 'Use the official Nigeria e-Visa portal at evisa.immigration.gov.ng. Always check the official Nigeria Immigration Service information before applying because requirements can change.',
+  },
+  {
+    q: 'How long does the Nigeria e-Visa take?',
+    a: 'Recent traveller reports describe approvals ranging from a few hours to 1-2 working days, but this is not guaranteed. Apply early enough to allow for delays, document problems or nationality-specific requirements.',
+  },
+  {
+    q: 'What documents do tourists usually need for the Nigeria e-Visa?',
+    a: 'Recent travellers report preparing a passport photo, passport data page, hotel booking or accommodation details, inbound and outbound flight booking, and 6 months of bank statements or evidence of funds. Check the official portal for the exact current requirements for your passport and visa type.',
+  },
+  {
+    q: 'Do I need an invitation letter for Nigeria?',
+    a: 'Not every tourist will need an invitation letter, especially if they are applying with hotel bookings. However, an invitation or support letter may be useful if you are visiting with local arrangements, using a private guide, staying with a host, or need clearer documentation for your trip. It does not guarantee visa approval.',
+  },
+  {
+    q: 'What is the Nigeria landing card?',
+    a: 'The landing card is an online travel form used by Nigeria Immigration Service for passengers entering Nigeria. Complete it before you travel, save the confirmation and keep it with your e-Visa and passport.',
+  },
+  {
+    q: 'Can Benjamin get my Nigeria visa for me?',
+    a: 'Benjamin can help with practical travel preparation, local contact details, invitation letter support where appropriate, itinerary planning and arrival help. He cannot guarantee visa approval or replace the official Nigeria Immigration Service application process.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Nigeria Visa Information',
+  url: canonical,
+  description,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: SITE.name,
+    url: SITE.siteUrl,
+  },
+};
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  ogTitle={title}
+  ogDescription={description}
+  ogType="article"
+  canonical={canonical}
+>
   <Header />
   <main>
-    <!-- Hero band -->
     <section class="relative bg-nigeria-deep text-white overflow-hidden" aria-label="Page introduction">
       <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
-      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-16 md:pb-20">
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-16 md:pb-20">
         <nav class="text-sm text-white/60 mb-6" aria-label="Breadcrumb">
           <a href="/" class="hover:text-white">Home</a>
           <span class="mx-2">/</span>
-          <span class="text-white/80">Nigeria Visa Invitation Letter</span>
+          <span class="text-white/80">Nigeria Visa Information</span>
         </nav>
-        <div class="adire-divider mb-6"></div>
-        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
-          Nigeria visa invitation letter support
-        </h1>
-        <p class="text-white/80 text-lg leading-relaxed max-w-2xl mb-8">
-          Benjamin from Your Nigeria Guide can help with a letter of invitation for travellers who need support for their Nigeria visa process, along with practical travel planning before your trip.
-        </p>
-        <WhatsAppButton label="Ask Benjamin about visa support" />
+
+        <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div>
+            <div class="adire-divider mb-6"></div>
+            <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-nigeria-sand">Tourist e-Visa, landing card and arrival help</p>
+            <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
+              Nigeria Visa Information
+            </h1>
+            <p class="text-white/85 text-lg leading-relaxed max-w-3xl mb-5">
+              Practical help with the Nigeria tourist e-Visa, landing card, invitation letter support and arrival preparation.
+            </p>
+            <p class="text-white/75 text-base leading-relaxed max-w-3xl mb-5">
+              Most visitors now apply online through the official Nigeria e-Visa portal. The process can be quick when your documents are prepared correctly, but requirements can change and immigration officers may ask to see proof of your plans when you arrive.
+            </p>
+            <p class="text-white/75 text-base leading-relaxed max-w-3xl mb-8">
+              Benjamin can help you understand what practical travel details you may need for your Nigeria trip, including itinerary support, accommodation information, airport arrival help and invitation letter support where appropriate.
+            </p>
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <WhatsAppButton href={visaWhatsappUrl} label="Ask Benjamin on WhatsApp" className="btn-whatsapp px-7 py-4" />
+              <a
+                href="https://evisa.immigration.gov.ng/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/60 px-7 py-4 font-semibold text-white transition-all duration-200 hover:border-white hover:bg-white/10"
+              >
+                Open official e-Visa portal
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M9 7h8v8" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <aside class="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
+            <p class="text-xs font-bold uppercase tracking-widest text-nigeria-sand mb-4">Official links</p>
+            <div class="space-y-3">
+              {officialLinks.map((link) => (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block rounded-xl border border-white/10 bg-white/10 p-4 transition-colors hover:bg-white/15"
+                >
+                  <span class="font-semibold text-white">{link.label}</span>
+                  <span class="mt-1 block text-sm leading-relaxed text-white/65">{link.body}</span>
+                </a>
+              ))}
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <!-- Compliance note -->
-    <section class="py-16 bg-white" aria-labelledby="how-heading">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="adire-divider mb-6"></div>
-        <h2 id="how-heading" class="section-heading mb-4">How Benjamin can help</h2>
-        <p class="text-gray-600 text-base leading-relaxed mb-6">
-          Benjamin can help with a letter of invitation for travellers who need support for their Nigeria visa process. Visa rules can change, so always confirm current requirements with official Nigerian immigration, your nearest Nigerian embassy, or a consulate before booking travel.
-        </p>
-
-        <div class="bg-nigeria-cream border-l-4 border-nigeria-clay rounded-2xl p-6">
-          <p class="text-nigeria-charcoal text-sm leading-relaxed">
-            <strong>Please note:</strong> a letter of invitation is supporting documentation only. It does not guarantee that a visa will be approved. Visa decisions are made by Nigerian immigration authorities. Always confirm the current process and requirements through official sources before you travel.
+    <section class="py-16 bg-white" aria-labelledby="quick-heading">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-nigeria-clay/20 bg-nigeria-cream p-6 md:p-8 shadow-card">
+          <div class="adire-divider mb-6"></div>
+          <h2 id="quick-heading" class="font-display text-2xl md:text-3xl font-bold text-nigeria-charcoal mb-4">
+            Quick answer: what most tourists should prepare
+          </h2>
+          <div class="space-y-4 text-gray-700 leading-relaxed">
+            <p>
+              For a Nigeria tourist e-Visa, recent travellers report preparing a passport photo, passport data page, hotel booking, inbound and outbound flight booking, and 6 months of bank statements or other evidence of funds.
+            </p>
+            <p>
+              After receiving the visa, travellers should also complete the Nigeria landing card online before arrival and keep copies of the visa, landing card, accommodation booking and return or onward ticket ready for immigration.
+            </p>
+          </div>
+          <p class="mt-6 rounded-xl border-l-4 border-nigeria-clay bg-white p-4 text-sm leading-relaxed text-gray-700">
+            <strong class="text-nigeria-charcoal">Important:</strong> Always check the official Nigeria Immigration Service portal before applying. This page is practical travel guidance, not legal advice.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Steps -->
-    <section class="py-16 lg:py-20 bg-nigeria-sand relative overflow-hidden" aria-labelledby="steps-heading">
+    <section class="py-20 lg:py-24 bg-nigeria-sand relative overflow-hidden" aria-labelledby="how-heading">
       <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
       <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14">
-          <h2 id="steps-heading" class="section-heading mb-4">How to get started</h2>
-          <p class="section-subheading mx-auto">A simple way to ask Benjamin about visa invitation letter support.</p>
+        <div class="max-w-3xl mb-10">
+          <div class="adire-divider mb-6"></div>
+          <h2 id="how-heading" class="section-heading mb-4">How the Nigeria tourist e-Visa usually works</h2>
+          <p class="section-subheading">
+            A simple overview before you start the official application.
+          </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {steps.map((s, i) => (
-            <div class="card-base p-8">
-              <div class="w-10 h-10 rounded-full bg-nigeria-deep text-white flex items-center justify-center font-display font-bold mb-4">{i + 1}</div>
-              <h3 class="font-display text-lg font-bold text-nigeria-charcoal mb-3">{s.title}</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">{s.body}</p>
+
+        <div class="grid gap-6 lg:grid-cols-[1fr_0.8fr]">
+          <div class="card-base p-8">
+            <div class="space-y-4 text-gray-600 leading-relaxed">
+              <p>
+                Nigeria now has an online e-Visa process for many short-stay visitors. Recent traveller reports describe approvals ranging from a few hours to 1-2 working days when the application was complete, although this can vary by passport, visa type, workload and document quality.
+              </p>
+              <p>
+                The application is made through the official Nigeria e-Visa portal. You create or log into an account, fill in your personal and travel details, upload the required documents, pay the fee if applicable, and wait for the visa document by email or through the portal.
+              </p>
             </div>
+            <a
+              href="https://evisa.immigration.gov.ng/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-outline mt-7"
+            >
+              Official Nigeria e-Visa portal
+            </a>
+          </div>
+
+          <div class="rounded-2xl bg-nigeria-deep p-8 text-white shadow-card">
+            <p class="text-sm font-bold uppercase tracking-widest text-nigeria-sand mb-4">Keep in mind</p>
+            <ul class="space-y-4 text-sm leading-relaxed text-white/75">
+              <li class="flex gap-3">
+                <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-nigeria-whatsapp"></span>
+                <span>Requirements can change, so always check the official Nigeria Immigration Service portal before applying.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-nigeria-whatsapp"></span>
+                <span>Benjamin can help you prepare the practical travel details, but he cannot guarantee visa approval.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-nigeria-whatsapp"></span>
+                <span>The official decision is always made by Nigeria Immigration Service and immigration authorities.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-24 bg-white" aria-labelledby="documents-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <div class="adire-divider mx-auto mb-6"></div>
+          <h2 id="documents-heading" class="section-heading mb-4">Documents to prepare</h2>
+          <p class="section-subheading mx-auto">
+            Before you start the application, prepare clear digital copies of your documents.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {documents.map((item, index) => (
+            <article class="card-base p-6">
+              <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-nigeria-deep text-white font-display text-lg font-bold">
+                {index + 1}
+              </div>
+              <h3 class="font-display text-xl font-bold text-nigeria-charcoal mb-3">{item.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{item.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <p class="mt-8 rounded-2xl bg-nigeria-cream p-5 text-sm leading-relaxed text-gray-700">
+          Recent traveller reports mentioned file-size limits, including documents needing to be under 1 MB. Compress files carefully so they remain readable.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-24 bg-nigeria-cream" aria-labelledby="steps-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-14 max-w-3xl">
+          <div class="adire-divider mb-6"></div>
+          <h2 id="steps-heading" class="section-heading mb-4">Step-by-step application guide</h2>
+          <p class="section-subheading">
+            Use this as a traveller checklist, then confirm the details through the official portals.
+          </p>
+        </div>
+
+        <ol class="relative space-y-8 border-l-2 border-nigeria-sand pl-8 md:pl-10">
+          {steps.map((step, index) => (
+            <li class="relative">
+              <span class="absolute -left-[42px] flex h-7 w-7 items-center justify-center rounded-full bg-nigeria-deep font-display text-xs font-bold text-white ring-4 ring-nigeria-cream md:-left-[52px]">
+                {index + 1}
+              </span>
+              <h3 class="font-display text-xl font-bold text-nigeria-charcoal mb-2">{step.title}</h3>
+              <p class="text-gray-600 leading-relaxed">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-24 bg-white" aria-labelledby="landing-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div class="rounded-2xl bg-nigeria-deep p-8 text-white shadow-card">
+            <p class="text-sm font-bold uppercase tracking-widest text-nigeria-sand mb-4">Before you fly</p>
+            <h2 id="landing-heading" class="font-display text-3xl md:text-4xl font-bold mb-4">
+              Landing card before arrival
+            </h2>
+            <p class="text-white/75 leading-relaxed mb-6">
+              Nigeria also uses an online landing and exit card system. The official Nigeria Immigration Service says landing and exit cards are mandatory for passengers entering or departing Nigeria.
+            </p>
+            <a
+              href="https://lecard.immigration.gov.ng/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-nigeria-deep transition-colors hover:bg-nigeria-sand"
+            >
+              Open official Landing and Exit Card portal
+            </a>
+          </div>
+
+          <div>
+            <div class="adire-divider mb-6"></div>
+            <p class="text-gray-600 leading-relaxed mb-5">
+              Recent traveller reports say the landing card can be completed shortly before travel and approval may be instant when the details are accepted. Complete it before you fly, save the confirmation, and keep it with your visa and travel documents.
+            </p>
+            <div class="rounded-2xl bg-nigeria-cream p-6">
+              <p class="text-sm font-bold uppercase tracking-widest text-nigeria-clay mb-3">Official portal flow</p>
+              <p class="text-gray-700 leading-relaxed">
+                Select arrival or departure, enter your visa or passport details, verify the information, then download or print the confirmation for presentation at checkpoints.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-24 bg-nigeria-sand relative overflow-hidden" aria-labelledby="arrival-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <div class="adire-divider mx-auto mb-6"></div>
+          <h2 id="arrival-heading" class="section-heading mb-4">At immigration: what to carry</h2>
+          <p class="section-subheading mx-auto">
+            Keep your documents easy to access when you arrive in Nigeria.
+          </p>
+        </div>
+
+        <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {carryItems.map((item) => (
+              <li class="rounded-xl bg-white p-4 text-sm font-medium text-gray-700 shadow-card">
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div class="rounded-2xl bg-white p-8 shadow-card">
+            <h3 class="font-display text-2xl font-bold text-nigeria-charcoal mb-4">Questions travellers report being asked</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Recent travellers reported being asked questions such as where they were staying, how long they were staying, which cities they would visit, and whether they had a flight out of Nigeria. Stay calm, answer clearly, and keep your documents organised.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-24 bg-white" aria-labelledby="letter-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-2">
+          <div>
+            <div class="adire-divider mb-6"></div>
+            <h2 id="letter-heading" class="section-heading mb-4">When an invitation letter may help</h2>
+            <div class="space-y-4 text-gray-600 leading-relaxed">
+              <p>
+                An invitation letter is not the same thing as a visa, and it does not guarantee approval or entry. However, it can sometimes help explain the practical purpose of your trip, especially if you are using a local host, arranging a private guide, or planning a custom itinerary.
+              </p>
+              <p>
+                A good support letter should be clear, simple and truthful. It should match the details in your visa application, including your travel dates, where you plan to stay, your planned activities and local contact details.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-nigeria-cream p-8">
+            <p class="text-sm font-bold uppercase tracking-widest text-nigeria-clay mb-4">No guarantee</p>
+            <p class="text-gray-700 leading-relaxed">
+              Benjamin can help you prepare practical travel details, but he cannot guarantee visa approval. The visa decision is made by Nigeria Immigration Service and the immigration authorities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-24 bg-nigeria-deep text-white relative overflow-hidden" aria-labelledby="help-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <div class="adire-divider mb-6"></div>
+            <h2 id="help-heading" class="font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5">
+              How Benjamin can help
+            </h2>
+            <p class="text-white/75 leading-relaxed mb-7">
+              Benjamin can help with practical Nigeria travel preparation, especially for first-time visitors arriving in Lagos.
+            </p>
+            <WhatsAppButton href={visaWhatsappUrl} label="Message Benjamin on WhatsApp" />
+          </div>
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {helpItems.map((item) => (
+              <div class="rounded-xl border border-white/10 bg-white/10 p-4 text-sm leading-relaxed text-white/80">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-24 bg-white" aria-labelledby="mistakes-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 max-w-3xl">
+          <div class="adire-divider mb-6"></div>
+          <h2 id="mistakes-heading" class="section-heading mb-4">Common mistakes to avoid</h2>
+          <p class="section-subheading">
+            Small document problems can make a simple application more stressful than it needs to be.
+          </p>
+        </div>
+
+        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {mistakes.map((item) => (
+            <li class="rounded-xl bg-nigeria-cream p-5 text-sm leading-relaxed text-gray-700">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq" class="py-20 lg:py-24 bg-nigeria-cream" aria-labelledby="faq-heading">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="adire-divider mx-auto mb-6"></div>
+          <h2 id="faq-heading" class="section-heading mb-4">Nigeria visa FAQ</h2>
+          <p class="section-subheading mx-auto">
+            Practical answers for tourists preparing a short visit to Nigeria.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          {faqs.map((item) => (
+            <details class="group bg-white rounded-2xl border border-black/5 shadow-card overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 font-display text-lg font-semibold text-nigeria-charcoal">
+                <span>{item.q}</span>
+                <svg
+                  class="w-5 h-5 flex-shrink-0 text-nigeria-deep transition-transform duration-300 group-open:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 -mt-1 text-gray-600 text-base leading-relaxed">
+                {item.a}
+              </div>
+            </details>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
     <section class="py-20 lg:py-28 bg-nigeria-deep relative overflow-hidden" aria-labelledby="contact-heading">
       <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
       <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <div class="adire-divider mx-auto mb-6"></div>
-        <h2 id="contact-heading" class="font-display text-3xl md:text-4xl font-bold mb-4">Ask Benjamin on WhatsApp</h2>
+        <h2 id="contact-heading" class="font-display text-3xl md:text-4xl font-bold mb-4">
+          Need help preparing your Nigeria trip?
+        </h2>
         <p class="text-white/80 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-          Message Benjamin with your travel dates and questions about visa invitation letter support. He will explain what information is needed and how he can help.
+          Send Benjamin your travel dates, passport country, arrival city, number of travellers and what you plan to do in Nigeria. He can help you understand the practical details you may need for your trip and explain how invitation letter support works.
         </p>
-        <WhatsAppButton label="Message Benjamin on WhatsApp" />
+        <WhatsAppButton href={visaWhatsappUrl} label="Message Benjamin on WhatsApp" />
         <p class="text-white/50 text-sm mt-4">{SITE.phoneDisplay}</p>
         <p class="text-white/70 text-sm mt-6">
-          Planning a trip too? See <a href="/lagos-private-guide/" class="underline hover:text-white">private guide services in Lagos</a>.
+          Planning sightseeing too? See <a href="/lagos-private-guide/" class="underline hover:text-white">private guide services in Lagos</a>.
         </p>
       </div>
     </section>
   </main>
   <Footer />
   <StickyWhatsApp />
+
+  <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

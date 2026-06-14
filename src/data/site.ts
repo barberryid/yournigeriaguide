@@ -15,7 +15,7 @@ export const SITE = {
   // Default metadata (homepage). Individual pages can override via BaseLayout props.
   title: 'Your Nigeria Guide | Private Guide in Lagos and Nigeria',
   description:
-    'Explore Lagos and Nigeria with Adebayo Benjamin, a trusted local private guide. Get help with Lagos tours, custom Nigeria itineraries, airport arrival, WhatsApp planning, and Nigeria visa invitation letter support.',
+    'Explore Lagos and Nigeria with Adebayo Benjamin, a trusted local private guide. Get help with Lagos tours, custom Nigeria itineraries, airport arrival, WhatsApp planning, Nigeria visa information, and invitation letter support.',
   ogTitle: 'Your Nigeria Guide | Private Guide in Lagos and Nigeria',
   ogDescription:
     'Explore Lagos and Nigeria with Adebayo Benjamin, a trusted local private guide. Contact Benjamin easily on WhatsApp.',
@@ -37,8 +37,8 @@ export const FAQ = [
     a: 'The guiding fee is USD 50 per day. Extra costs such as transport, meals, entrance fees, and accommodation are separate. Message Benjamin with your plans so he can explain what to expect.',
   },
   {
-    q: 'Can Benjamin help with a Nigeria visa invitation letter?',
-    a: 'Benjamin can help with a letter of invitation for travellers who need support for their Nigeria visa process. Visa rules can change, so always confirm current requirements with official Nigerian immigration, your nearest Nigerian embassy, or a consulate before booking travel.',
+    q: 'Can Benjamin help with Nigeria visa information?',
+    a: 'Benjamin can help with practical travel preparation, local contact details, itinerary planning, arrival help, and invitation letter support where appropriate. Visa rules can change, so always confirm current requirements with Nigeria Immigration Service or an official Nigerian embassy or consulate before booking travel.',
   },
   {
     q: 'Does Benjamin guide in Lagos?',
