@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StickyWhatsApp from '../components/StickyWhatsApp.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import ImageCredit from '../components/ImageCredit.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
 import { SITE } from '../data/site';
 
 const title = 'Things to Do in Nigeria | Lagos, Makoko, Badagry, Abuja & Local Guide Ideas';
@@ -36,6 +36,8 @@ const experiences = [
   {
     title: 'Lagos City Tour',
     location: 'Lagos',
+    category: 'lagos',
+    featured: true,
     image: '/images/services/tour-culture.jpg',
     alt: 'Benjamin with a traveller at a cultural stop in Lagos',
     body: [
@@ -51,6 +53,7 @@ const experiences = [
   {
     title: 'Makoko by Boat',
     location: 'Lagos Lagoon',
+    category: 'lagos',
     image: '/images/things-to-do-nigeria/makoko-boats-lagos.webp',
     alt: 'Wooden boats on the water in Makoko, Lagos',
     credit: {
@@ -72,6 +75,7 @@ const experiences = [
   {
     title: 'Nike Art Gallery',
     location: 'Lagos / Abuja / Nigerian art context',
+    category: 'lagos',
     image: '/images/things-to-do-nigeria/nike-art-gallery-nigeria.webp',
     alt: 'Artworks displayed inside Nike Art Gallery in Abuja',
     credit: {
@@ -93,6 +97,7 @@ const experiences = [
   {
     title: 'Balogun Market',
     location: 'Lagos Island',
+    category: 'lagos',
     image: '/images/things-to-do-nigeria/balogun-market-lagos.webp',
     alt: 'Crowded street activity at Balogun Market on Lagos Island',
     credit: {
@@ -114,6 +119,7 @@ const experiences = [
   {
     title: 'Badagry Slave Route',
     location: 'Badagry, west of Lagos',
+    category: 'day-trips',
     image: '/images/things-to-do-nigeria/badagry-point-of-no-return.webp',
     alt: 'The Point of No Return site in Badagry, Lagos State',
     credit: {
@@ -135,6 +141,7 @@ const experiences = [
   {
     title: 'Abeokuta and Olumo Rock',
     location: 'Ogun State',
+    category: 'day-trips',
     image: '/images/things-to-do-nigeria/olumo-rock-abeokuta.webp',
     alt: 'A wide view of Olumo Rock in Abeokuta, Ogun State',
     credit: {
@@ -156,6 +163,7 @@ const experiences = [
   {
     title: 'Obasanjo Presidential Library',
     location: 'Abeokuta',
+    category: 'day-trips',
     image: '/images/things-to-do-nigeria/obasanjo-presidential-library.webp',
     alt: 'The Olusegun Obasanjo Presidential Library in Abeokuta',
     credit: {
@@ -177,6 +185,7 @@ const experiences = [
   {
     title: 'Abuja City Tour and National Mosque',
     location: 'Abuja',
+    category: 'day-trips',
     image: '/images/things-to-do-nigeria/abuja-national-mosque.webp',
     alt: 'The National Mosque in Abuja, Nigeria',
     credit: {
@@ -198,6 +207,7 @@ const experiences = [
   {
     title: 'Kano Durbar Festival',
     location: 'Kano, Northern Nigeria',
+    category: 'festivals',
     image: '/images/things-to-do-nigeria/kano-durbar.webp',
     alt: 'Horsemen riding during the September 2016 Durbar in Kano',
     credit: {
@@ -223,6 +233,7 @@ const experiences = [
   {
     title: 'Ojude Oba Festival',
     location: 'Ijebu-Ode, Ogun State',
+    category: 'festivals',
     image: '/images/things-to-do-nigeria/ojude-oba-festival.webp',
     alt: 'Horse riders taking part in the Ojude Oba Festival',
     credit: {
@@ -248,6 +259,7 @@ const experiences = [
   {
     title: 'Lagos Food and Restaurants',
     location: 'Lagos',
+    category: 'lagos',
     image: '/images/things-to-do-nigeria/nigerian-jollof-rice.webp',
     alt: 'A plate of Nigerian jollof rice and fried plantain',
     credit: {
@@ -268,28 +280,128 @@ const experiences = [
   },
 ];
 
+// Group experiences into themed sections for the page rhythm.
+const categories = [
+  {
+    id: 'lagos',
+    eyebrow: 'The big city',
+    label: 'Lagos',
+    title: 'Lagos, unfiltered',
+    blurb:
+      'Loud, creative and relentless — Nigeria\'s biggest city rewards anyone who shows up curious. These are the Lagos stops worth your time, and the local know-how that makes them work.',
+  },
+  {
+    id: 'day-trips',
+    eyebrow: 'Beyond the gridlock',
+    label: 'Day Trips',
+    title: 'Beyond the city',
+    blurb:
+      'Trade traffic for granite hills, heritage towns and the planned calm of Abuja. Each of these sits a drive away from Lagos and reveals a different Nigeria.',
+  },
+  {
+    id: 'festivals',
+    eyebrow: 'Once-a-year spectacle',
+    label: 'Festivals',
+    title: 'Festivals & spectacle',
+    blurb:
+      'Few things on earth match a Nigerian festival in full flow — horses, royalty, colour and sound. Time your trip right and these become the centrepiece.',
+  },
+];
+
+const stats = [
+  { value: '11', label: 'Curated experiences' },
+  { value: '5+', label: 'Cities & regions' },
+  { value: '2', label: 'Major festivals' },
+  { value: '1', label: 'Trusted local guide' },
+];
+
+// A sample Lagos day to show how stops combine — added value beyond the list.
+const sampleDay = [
+  {
+    time: 'Morning',
+    title: 'Markets & street life',
+    body: 'Start at Balogun or Lekki Market while it is still cool, with a guide who knows the layout and keeps photography discreet.',
+  },
+  {
+    time: 'Midday',
+    title: 'Art, then a real lunch',
+    body: 'Cool down inside Nike Art Gallery, then a reliable local spot for jollof, grilled fish and plantain.',
+  },
+  {
+    time: 'Afternoon',
+    title: 'Makoko by boat',
+    body: 'Head to the lagoon for a respectful, pre-arranged visit to the waterside community — Lagos beyond the surface.',
+  },
+  {
+    time: 'Evening',
+    title: 'Waterfront & music',
+    body: 'Wind down by the water and ease into Lagos nightlife or live music, at your own pace, with a driver handling the traffic.',
+  },
+];
+
+// Split a "Label: value" fact into its parts for nicer rendering.
+const splitFact = (fact) => {
+  const i = fact.indexOf(':');
+  if (i === -1) return { label: '', value: fact };
+  return { label: fact.slice(0, i).trim(), value: fact.slice(i + 1).trim() };
+};
+
+const slug = (text) => text.toLowerCase().replaceAll(' ', '-');
+
+const lagosItems = experiences.filter((e) => e.category === 'lagos');
+const featuredExperience = lagosItems.find((e) => e.featured);
+const lagosRest = lagosItems.filter((e) => !e.featured);
+const dayTripItems = experiences.filter((e) => e.category === 'day-trips');
+const festivalItems = experiences.filter((e) => e.category === 'festivals');
+
+const lagosMeta = categories.find((c) => c.id === 'lagos');
+const dayTripMeta = categories.find((c) => c.id === 'day-trips');
+const festivalMeta = categories.find((c) => c.id === 'festivals');
+
+const sectionNav = [
+  { id: 'lagos', label: 'Lagos' },
+  { id: 'day-trips', label: 'Day Trips' },
+  { id: 'festivals', label: 'Festivals' },
+  { id: 'plan-a-day', label: 'Sample Day' },
+  { id: 'plan', label: 'Before You Go' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const featuredFacts = featuredExperience
+  ? featuredExperience.facts.map((f) => {
+      const i = f.indexOf(':');
+      return i === -1 ? { label: '', value: f } : { label: f.slice(0, i).trim(), value: f.slice(i + 1).trim() };
+    })
+  : [];
+
 const planningItems = [
   {
+    icon: '💵',
     title: 'Money and payments',
     body: 'Nigeria uses the naira. Visitors should not assume that every place will accept international cards, and some businesses may not accept cash either. Digital payments from Nigerian bank accounts are very common, which can make payment awkward for foreign travellers. A local guide can help with exchanging cash, understanding fair prices, choosing restaurants, arranging transport and avoiding unnecessary overcharging.',
   },
   {
+    icon: '🛬',
     title: 'Airport arrival',
     body: 'Lagos airport can be easier than many visitors expect, but arrival is still smoother with help arranged in advance. A guide can assist with transport into the city, SIM card advice, money exchange guidance and first-day orientation.',
   },
   {
+    icon: '📷',
     title: 'Photography',
     body: 'Photography can be sensitive in Nigeria, especially in Lagos markets, around monuments, government buildings, communities and crowded public places. A phone is usually less intrusive than a large camera. Always ask before photographing people closely.',
   },
   {
+    icon: '🗓️',
     title: 'Best time to visit',
     body: 'The dry season is usually easier for travel, though Lagos and southern Nigeria can still be hot and humid. November can be a good month because the landscape may be greener after the rains, while February is often dry but hazy.',
   },
   {
+    icon: '📄',
     title: 'Visa basics',
     body: 'Keep visa planning separate from sightseeing planning. Visa rules can change, so check official sources before booking travel. Benjamin can help with visa invitation letter support where relevant.',
   },
   {
+    icon: '🧭',
     title: 'Why use a local guide?',
     body: 'Nigeria rewards travellers who are flexible, curious and realistic. It is not always a simple country to explore independently, especially on a short trip. A local guide helps with transport, timing, money, safety, cultural etiquette and choosing the right stops for your interests.',
   },
@@ -364,124 +476,224 @@ const faqSchema = {
   ogImageAlt={ogImageAlt}
   ogType="article"
   canonical={canonical}
+  preloadImage="/images/hero/lagos-boat-travellers.jpg"
 >
   <Header />
   <main>
-    <section class="relative bg-nigeria-deep text-white overflow-hidden" aria-label="Page introduction">
-      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
-      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-16 md:pb-20">
-        <nav class="text-sm text-white/60 mb-6" aria-label="Breadcrumb">
+    <!-- HERO -->
+    <section class="relative isolate flex min-h-[90vh] items-end overflow-hidden" aria-label="Page introduction">
+      <img
+        src="/images/hero/lagos-boat-travellers.jpg"
+        alt="Travellers exploring the Lagos waterfront by boat with a local guide"
+        fetchpriority="high"
+        class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+      />
+      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-nigeria-charcoal/85 via-nigeria-charcoal/45 to-nigeria-charcoal/95"></div>
+      <div class="absolute inset-0 -z-10 bg-adire-pattern opacity-20" aria-hidden="true"></div>
+
+      <div class="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-32 sm:px-6 md:pb-24 lg:px-8">
+        <nav class="mb-6 text-sm text-white/60" aria-label="Breadcrumb">
           <a href="/" class="hover:text-white">Home</a>
           <span class="mx-2">/</span>
-          <span class="text-white/80">Things to Do in Nigeria</span>
+          <span class="text-white/85">Things to Do in Nigeria</span>
         </nav>
-        <div class="adire-divider mb-6"></div>
-        <p class="text-nigeria-sand text-sm font-semibold uppercase tracking-widest mb-3">Experiences</p>
-        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
-          Things to Do in Nigeria
-        </h1>
-        <div class="max-w-3xl space-y-5 text-white/80 text-lg leading-relaxed mb-8">
-          <p>
-            A practical guide to some of the most rewarding Nigeria experiences, from Lagos markets, art galleries and Makoko to Badagry, Abeokuta, Abuja, cultural festivals, food and day trips with a trusted local guide.
-          </p>
-          <p>
-            Nigeria is not always an easy country for first-time visitors, but it is much more rewarding when the trip is planned realistically. Lagos can be intense, busy and slow to move around, while places outside Lagos often feel calmer and more surprising. With a local guide, private transport and clear expectations, Nigeria can offer a strong mix of culture, history, food, markets, festivals and everyday life.
-          </p>
+
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-sm">
+          <span class="inline-block h-2 w-2 animate-pulse-slow rounded-full bg-nigeria-whatsapp"></span>
+          Hand-picked by Benjamin · Lagos &amp; beyond
         </div>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <WhatsAppButton href={thingsToDoWhatsappUrl} label="Plan your Nigeria trip on WhatsApp" />
-          <a href="/lagos-private-guide/" class="inline-flex items-center justify-center gap-2 border-2 border-white/60 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 hover:border-white transition-all duration-200">
-            See Lagos private guide services
+
+        <h1 class="mb-6 max-w-4xl font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          Things to do in <span class="text-nigeria-sand">Nigeria</span>
+        </h1>
+
+        <p class="mb-9 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
+          From Lagos markets and lagoon communities to heritage day trips and once-a-year festivals — an honest, curated guide to what is genuinely worth your time, and how to do it well with someone local.
+        </p>
+
+        <div class="mb-12 flex flex-col gap-4 sm:flex-row">
+          <WhatsAppButton href={thingsToDoWhatsappUrl} label="Plan your Nigeria trip" className="btn-whatsapp px-7 py-4 text-base" />
+          <a
+            href="#lagos"
+            class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/60 px-7 py-4 font-semibold text-white transition-all duration-200 hover:border-white hover:bg-white/10"
+          >
+            Explore experiences
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
           </a>
         </div>
+
+        <dl class="grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/15 sm:grid-cols-4">
+          {stats.map((stat) => (
+            <div class="bg-white/[0.07] px-5 py-5 backdrop-blur-sm">
+              <dd class="font-display text-3xl font-bold text-white">{stat.value}</dd>
+              <dt class="mt-1 text-xs uppercase tracking-widest text-white/60">{stat.label}</dt>
+            </div>
+          ))}
+        </dl>
       </div>
+
+      <div class="accent-bar absolute inset-x-0 bottom-0 h-1.5"></div>
     </section>
 
-    <section class="py-20 lg:py-28 bg-white" aria-labelledby="experiences-heading">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <div class="adire-divider mx-auto mb-6"></div>
-          <h2 id="experiences-heading" class="section-heading mb-4">Nigeria experiences worth planning well</h2>
-          <p class="section-subheading mx-auto">
-            The best Nigeria trip is not about rushing through a checklist. It is about choosing the right stops for your time, energy, interests and comfort level.
-          </p>
+    <!-- STICKY SECTION NAV -->
+    <nav class="sticky top-16 z-40 border-b border-black/5 bg-white/90 backdrop-blur-md md:top-20" aria-label="Section navigation">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-1 overflow-x-auto py-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <span class="mr-2 hidden flex-shrink-0 text-xs font-semibold uppercase tracking-widest text-gray-400 sm:inline">Jump to</span>
+          {sectionNav.map((link) => (
+            <a href={`#${link.id}`} class="section-nav-link flex-shrink-0" data-spy={link.id}>{link.label}</a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <!-- LAGOS -->
+    <section id="lagos" class="scroll-mt-32 bg-white py-20 lg:py-28" aria-labelledby="lagos-heading">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal mb-12 max-w-3xl lg:mb-16">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-nigeria-clay">{lagosMeta.eyebrow}</p>
+          <h2 id="lagos-heading" class="section-heading mb-4">{lagosMeta.title}</h2>
+          <p class="section-subheading">{lagosMeta.blurb}</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {experiences.map((experience) => (
-            <article class="card-base flex flex-col" aria-labelledby={`${experience.title.toLowerCase().replaceAll(' ', '-')}-heading`}>
-              {experience.image && (
-                <figure>
-                  <div class="relative aspect-[3/2] overflow-hidden">
-                    <img
-                      src={experience.image}
-                      alt={experience.alt}
-                      loading="lazy"
-                      decoding="async"
-                      class="w-full h-full object-cover"
-                    />
-                    <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-nigeria-deep text-xs font-semibold px-3 py-1 rounded-full">
-                      {experience.location}
-                    </span>
-                  </div>
-                  {experience.credit && (
-                    <figcaption class="px-5 pt-3">
-                      <ImageCredit credit={experience.credit} />
-                    </figcaption>
-                  )}
-                </figure>
-              )}
-
-              <div class="p-6 flex flex-col flex-1">
-                <p class="text-nigeria-clay text-xs font-semibold uppercase tracking-widest mb-2">{experience.location}</p>
-                <h3 id={`${experience.title.toLowerCase().replaceAll(' ', '-')}-heading`} class="font-display text-xl font-bold text-nigeria-charcoal mb-4">
-                  {experience.title}
-                </h3>
-                <div class="space-y-3 text-gray-600 text-sm leading-relaxed mb-5">
-                  {experience.body.map((paragraph) => <p>{paragraph}</p>)}
-                </div>
-                {experience.sourceLink && (
-                  <a href={experience.sourceLink.href} class="text-nigeria-deep hover:underline font-semibold text-sm mb-5 self-start" target="_blank" rel="noopener noreferrer">
-                    {experience.sourceLink.label}
-                  </a>
-                )}
-                <div class="mt-auto bg-nigeria-cream rounded-xl p-4">
-                  <p class="text-nigeria-charcoal text-xs font-semibold uppercase tracking-widest mb-3">Quick facts</p>
-                  <ul class="space-y-2">
-                    {experience.facts.map((fact) => (
-                      <li class="text-gray-600 text-sm leading-relaxed flex gap-2">
-                        <span class="mt-2 w-1.5 h-1.5 rounded-full bg-nigeria-clay flex-shrink-0" aria-hidden="true"></span>
-                        <span>{fact}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        {featuredExperience && (
+          <article class="reveal group mb-8 grid overflow-hidden rounded-3xl shadow-card transition-shadow duration-300 hover:shadow-card-hover lg:grid-cols-2">
+            <div class="relative min-h-[280px] overflow-hidden lg:min-h-[420px]">
+              <img
+                src={featuredExperience.image}
+                alt={featuredExperience.alt}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:bg-gradient-to-r"></div>
+              <span class="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-nigeria-clay px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white">
+                ★ Start here
+              </span>
+            </div>
+            <div class="flex flex-col justify-center bg-nigeria-deep p-8 text-white md:p-10 lg:p-12">
+              <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-nigeria-sand">{featuredExperience.location}</p>
+              <h3 class="mb-4 font-display text-3xl font-bold leading-tight md:text-4xl">{featuredExperience.title}</h3>
+              <div class="mb-6 space-y-3 leading-relaxed text-white/80">
+                {featuredExperience.body.map((paragraph) => <p>{paragraph}</p>)}
               </div>
-            </article>
+              <ul class="mb-7 flex flex-wrap gap-2">
+                {featuredFacts.map((fact) => (
+                  <li class="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs text-white/85">
+                    {fact.label && <span class="font-semibold text-nigeria-sand">{fact.label}:</span>}
+                    {fact.value}
+                  </li>
+                ))}
+              </ul>
+              <WhatsAppButton href={thingsToDoWhatsappUrl} label="Plan a Lagos day with Benjamin" className="btn-whatsapp self-start px-6 py-3 text-sm" />
+            </div>
+          </article>
+        )}
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {lagosRest.map((experience, index) => (
+            <div class="reveal" style={`transition-delay:${index * 70}ms`}>
+              <ExperienceCard experience={experience} index={index + 2} />
+            </div>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="py-20 lg:py-28 bg-nigeria-sand relative overflow-hidden" aria-labelledby="planning-heading">
-      <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mb-14">
+    <!-- DAY TRIPS -->
+    <section id="day-trips" class="scroll-mt-32 bg-nigeria-cream py-20 lg:py-28" aria-labelledby="day-trips-heading">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal mb-12 max-w-3xl lg:mb-16">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-nigeria-clay">{dayTripMeta.eyebrow}</p>
+          <h2 id="day-trips-heading" class="section-heading mb-4">{dayTripMeta.title}</h2>
+          <p class="section-subheading">{dayTripMeta.blurb}</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {dayTripItems.map((experience, index) => (
+            <div class="reveal" style={`transition-delay:${index * 70}ms`}>
+              <ExperienceCard experience={experience} index={index + 1} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FESTIVALS (dark band) -->
+    <section id="festivals" class="relative scroll-mt-32 overflow-hidden bg-nigeria-charcoal py-20 lg:py-28" aria-labelledby="festivals-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-[0.07]" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal mb-12 max-w-3xl lg:mb-16">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-nigeria-sand">{festivalMeta.eyebrow}</p>
+          <h2 id="festivals-heading" class="mb-4 font-display text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">{festivalMeta.title}</h2>
+          <p class="text-lg leading-relaxed text-white/70">{festivalMeta.blurb}</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {festivalItems.map((experience, index) => (
+            <div class="reveal" style={`transition-delay:${index * 90}ms`}>
+              <ExperienceCard experience={experience} index={index + 1} dark={true} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SAMPLE DAY TIMELINE -->
+    <section id="plan-a-day" class="scroll-mt-32 bg-white py-20 lg:py-28" aria-labelledby="sample-day-heading">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal mb-14 max-w-3xl">
           <div class="adire-divider mb-6"></div>
-          <h2 id="planning-heading" class="section-heading mb-4">Practical things to know before visiting Nigeria</h2>
+          <h2 id="sample-day-heading" class="section-heading mb-4">How a Lagos day comes together</h2>
+          <p class="section-subheading">
+            You do not book individual tickets and hope it flows. Here is how the right stops can stack into one well-paced day — adjusted entirely to your interests and energy.
+          </p>
+        </div>
+
+        <ol class="relative space-y-8 border-l-2 border-nigeria-sand pl-8 md:space-y-10 md:pl-10">
+          {sampleDay.map((step, index) => (
+            <li class="reveal relative" style={`transition-delay:${index * 80}ms`}>
+              <span class="absolute -left-[42px] flex h-7 w-7 items-center justify-center rounded-full bg-nigeria-deep font-display text-xs font-bold text-white ring-4 ring-white md:-left-[52px]">
+                {index + 1}
+              </span>
+              <p class="mb-1 text-xs font-bold uppercase tracking-widest text-nigeria-clay">{step.time}</p>
+              <h3 class="mb-2 font-display text-xl font-bold text-nigeria-charcoal">{step.title}</h3>
+              <p class="max-w-2xl leading-relaxed text-gray-600">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+
+        <div class="reveal mt-12 flex flex-col items-start gap-4 rounded-2xl bg-nigeria-cream p-6 sm:flex-row sm:items-center sm:justify-between md:p-8">
+          <p class="max-w-xl text-gray-700">
+            <span class="font-semibold text-nigeria-charcoal">Every itinerary is custom.</span> Tell Benjamin your dates, group size and interests and he will shape a realistic plan around them.
+          </p>
+          <WhatsAppButton href={thingsToDoWhatsappUrl} label="Build my itinerary" className="btn-whatsapp flex-shrink-0 px-6 py-3 text-sm" />
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANNING / BEFORE YOU GO -->
+    <section id="plan" class="relative scroll-mt-32 overflow-hidden bg-nigeria-sand py-20 lg:py-28" aria-labelledby="planning-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal mb-14 max-w-3xl">
+          <div class="adire-divider mb-6"></div>
+          <h2 id="planning-heading" class="section-heading mb-4">Know before you go</h2>
           <p class="section-subheading">
             Nigeria can be warm, generous and memorable, but it works best when the practical parts are handled early.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {planningItems.map((item, index) => (
-            <article class="bg-white rounded-2xl p-6 shadow-card">
-              <div class="w-10 h-10 rounded-full bg-nigeria-deep text-white flex items-center justify-center font-display font-bold mb-5">
-                {index + 1}
+            <article class="reveal flex flex-col rounded-2xl bg-white p-6 shadow-card transition-transform duration-300 hover:-translate-y-1" style={`transition-delay:${index * 60}ms`}>
+              <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-nigeria-deep/10 text-2xl" aria-hidden="true">
+                {item.icon}
               </div>
-              <h3 class="font-display text-xl font-bold text-nigeria-charcoal mb-3">{item.title}</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">{item.body}</p>
+              <h3 class="mb-3 font-display text-xl font-bold text-nigeria-charcoal">{item.title}</h3>
+              <p class="text-sm leading-relaxed text-gray-600">{item.body}</p>
             </article>
           ))}
         </div>
@@ -514,7 +726,7 @@ const faqSchema = {
       </div>
     </section>
 
-    <section id="faq" class="py-20 lg:py-28 bg-white" aria-labelledby="faq-heading">
+    <section id="faq" class="scroll-mt-32 py-20 lg:py-28 bg-nigeria-cream" aria-labelledby="faq-heading">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <div class="adire-divider mx-auto mb-6"></div>
@@ -526,7 +738,7 @@ const faqSchema = {
 
         <div class="space-y-4">
           {faqs.map((item) => (
-            <details class="group bg-nigeria-cream rounded-2xl border border-black/5 shadow-card overflow-hidden">
+            <details class="group bg-white rounded-2xl border border-black/5 shadow-card overflow-hidden">
               <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 font-display text-lg font-semibold text-nigeria-charcoal">
                 <span>{item.q}</span>
                 <svg
@@ -553,4 +765,57 @@ const faqSchema = {
 
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <script>
+    // Enable the JS-gated reveal styles. Without this class, content shows normally.
+    document.documentElement.classList.add('js');
+
+    // Scroll-reveal: fade sections in as they enter the viewport.
+    const reveals = document.querySelectorAll('.reveal');
+    const revealAll = () => reveals.forEach((el) => el.classList.add('is-visible'));
+
+    if (reveals.length) {
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        revealAll();
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+        );
+        reveals.forEach((el) => revealObserver.observe(el));
+        // Safety net: never leave content permanently hidden if the observer misfires.
+        setTimeout(revealAll, 2500);
+      }
+    }
+
+    // Scroll-spy: highlight the active section in the sticky nav.
+    const navLinks = Array.from(document.querySelectorAll('.section-nav-link'));
+    const sections = navLinks
+      .map((link) => document.getElementById(link.getAttribute('data-spy')))
+      .filter(Boolean);
+
+    if (sections.length) {
+      const spyObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              navLinks.forEach((link) =>
+                link.classList.toggle('is-active', link.getAttribute('data-spy') === id)
+              );
+            }
+          });
+        },
+        { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+      );
+      sections.forEach((section) => spyObserver.observe(section));
+    }
+  </script>
 </BaseLayout>

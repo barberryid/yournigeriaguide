@@ -66,3 +66,38 @@
 img {
   transition: opacity 0.3s ease;
 }
+
+/* Scroll-reveal animation (used on Things to Do page).
+   Gated behind .js so content is always visible without JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Sticky in-page section nav */
+.section-nav-link {
+  @apply whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold text-gray-500 transition-all duration-200 hover:text-nigeria-deep;
+}
+.section-nav-link.is-active {
+  @apply bg-nigeria-deep text-white shadow-card;
+}
+
+/* Decorative kente/adire accent line */
+.accent-bar {
+  background: linear-gradient(
+    90deg,
+    #0b5d3b 0 25%,
+    #c46a3a 25% 50%,
+    #f4e7d0 50% 75%,
+    #128c4a 75% 100%
+  );
+}

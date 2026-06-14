@@ -1,0 +1,146 @@
+---
+import ImageCredit from './ImageCredit.astro';
+
+interface Fact {
+  label: string;
+  value: string;
+}
+
+interface Experience {
+  title: string;
+  location: string;
+  image?: string;
+  alt?: string;
+  body: string[];
+  facts: string[];
+  credit?: any;
+  sourceLink?: { href: string; label: string };
+}
+
+interface Props {
+  experience: Experience;
+  index?: number;
+  dark?: boolean;
+}
+
+const { experience, index, dark = false } = Astro.props;
+
+const splitFact = (fact: string): Fact => {
+  const i = fact.indexOf(':');
+  if (i === -1) return { label: '', value: fact };
+  return { label: fact.slice(0, i).trim(), value: fact.slice(i + 1).trim() };
+};
+
+const headingId = `${experience.title.toLowerCase().replaceAll(' ', '-')}-heading`;
+---
+
+<article
+  class:list={[
+    'group relative flex flex-col overflow-hidden rounded-2xl transition-all duration-300',
+    dark
+      ? 'bg-white/[0.04] border border-white/10 hover:border-nigeria-sand/40 hover:-translate-y-1'
+      : 'card-base hover:-translate-y-1',
+  ]}
+  aria-labelledby={headingId}
+>
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <img
+      src={experience.image}
+      alt={experience.alt}
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+
+    {index != null && (
+      <span class="absolute top-4 right-4 font-display text-base font-bold text-white/60">
+        {String(index).padStart(2, '0')}
+      </span>
+    )}
+
+    <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-nigeria-deep backdrop-blur-sm">
+      <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" />
+      </svg>
+      {experience.location}
+    </span>
+
+    <h3
+      id={headingId}
+      class="absolute inset-x-0 bottom-0 p-5 font-display text-xl font-bold leading-tight text-white drop-shadow"
+    >
+      {experience.title}
+    </h3>
+  </div>
+
+  <div class="flex flex-1 flex-col p-6">
+    <div
+      class:list={[
+        'mb-5 space-y-3 text-sm leading-relaxed',
+        dark ? 'text-white/70' : 'text-gray-600',
+      ]}
+    >
+      {experience.body.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+
+    {experience.sourceLink && (
+      <a
+        href={experience.sourceLink.href}
+        class:list={[
+          'mb-5 inline-flex items-center gap-1 self-start text-sm font-semibold hover:underline',
+          dark ? 'text-nigeria-sand' : 'text-nigeria-deep',
+        ]}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {experience.sourceLink.label}
+        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    )}
+
+    <div
+      class:list={[
+        'mt-auto rounded-xl p-4',
+        dark ? 'bg-white/[0.06]' : 'bg-nigeria-cream',
+      ]}
+    >
+      <ul class="space-y-2.5">
+        {experience.facts.map((fact) => {
+          const { label, value } = splitFact(fact);
+          return (
+            <li
+              class:list={[
+                'flex gap-2.5 text-sm leading-relaxed',
+                dark ? 'text-white/75' : 'text-gray-600',
+              ]}
+            >
+              <svg
+                class:list={['mt-0.5 h-4 w-4 flex-shrink-0', dark ? 'text-nigeria-sand' : 'text-nigeria-clay']}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.79 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd" />
+              </svg>
+              <span>
+                {label && (
+                  <span class:list={['font-semibold', dark ? 'text-white' : 'text-nigeria-charcoal']}>{label}: </span>
+                )}
+                {value}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+
+    {experience.credit && (
+      <div class:list={['pt-3', dark ? '[&_p]:text-white/45 [&_a]:text-white/60' : '']}>
+        <ImageCredit credit={experience.credit} />
+      </div>
+    )}
+  </div>
+</article>
