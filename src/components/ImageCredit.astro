@@ -1,0 +1,24 @@
+---
+interface Credit {
+  author: string;
+  authorUrl?: string;
+  source: string;
+  license: string;
+  licenseUrl: string;
+  modified?: string;
+}
+
+interface Props {
+  credit: Credit;
+}
+
+const { credit } = Astro.props;
+---
+
+<p class="text-xs leading-relaxed text-gray-500">
+  Photo:
+  <a href={credit.authorUrl ?? credit.source} class="underline hover:text-nigeria-deep" target="_blank" rel="noopener noreferrer">{credit.author}</a>,
+  via <a href={credit.source} class="underline hover:text-nigeria-deep" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>,
+  <a href={credit.licenseUrl} class="underline hover:text-nigeria-deep" target="_blank" rel="noopener noreferrer">{credit.license}</a>.
+  {credit.modified ?? 'Cropped/resized from original'}.
+</p>

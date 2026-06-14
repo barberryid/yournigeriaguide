@@ -8,6 +8,8 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: string;
   canonical?: string;
   preloadImage?: string;
 }
@@ -18,6 +20,8 @@ const {
   ogTitle,
   ogDescription,
   ogImage = SITE.ogImage,
+  ogImageAlt = SITE.ogImageAlt,
+  ogType = 'website',
   canonical,
   preloadImage,
 } = Astro.props;
@@ -79,13 +83,13 @@ const businessSchema = {
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={resolvedOgTitle} />
     <meta property="og:description" content={resolvedOgDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
-    <meta property="og:image:alt" content={SITE.ogImageAlt} />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

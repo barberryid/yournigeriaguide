@@ -6,6 +6,7 @@ interface Props {
   ariaLabel?: string;
   className?: string;
   full?: boolean;
+  href?: string;
 }
 
 const {
@@ -13,11 +14,12 @@ const {
   ariaLabel,
   className = 'btn-whatsapp',
   full = false,
+  href = SITE.whatsappUrl,
 } = Astro.props;
 ---
 
 <a
-  href={SITE.whatsappUrl}
+  href={href}
   aria-label={ariaLabel ?? `${label} — contact Benjamin on WhatsApp`}
   class={`${className}${full ? ' w-full justify-center' : ''}`}
 >

@@ -1,0 +1,556 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyWhatsApp from '../components/StickyWhatsApp.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import ImageCredit from '../components/ImageCredit.astro';
+import { SITE } from '../data/site';
+
+const title = 'Things to Do in Nigeria | Lagos, Makoko, Badagry, Abuja & Local Guide Ideas';
+const description =
+  'A practical guide to rewarding things to do in Nigeria, including Lagos, Makoko, Badagry, Abeokuta, Abuja, festivals, markets, food and private guide support with Benjamin.';
+const canonical = `${SITE.domain}/things-to-do/`;
+const ogTitle = 'Things to Do in Nigeria | Your Nigeria Guide';
+const ogDescription =
+  'Lagos, Makoko, Badagry, Abeokuta, Abuja, festivals, food, markets and practical private-guide ideas for Nigeria.';
+const ogImage = '/images/things-to-do-nigeria/balogun-market-lagos.webp';
+const ogImageAlt = 'A busy street scene at Balogun Market on Lagos Island, Nigeria';
+
+const thingsToDoMessage =
+  'Hello Benjamin, I am planning a trip to Nigeria. My dates are [dates]. We are [number] people. I am interested in [Lagos / Makoko / Badagry / Abeokuta / Abuja / festivals / food / markets]. Can you please help me plan what is realistic and give me a guide price?';
+const thingsToDoWhatsappUrl = `https://wa.me/${SITE.phoneE164.replace('+', '')}?text=${encodeURIComponent(thingsToDoMessage)}`;
+
+const commons = {
+  ccBySa20: {
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+  },
+  ccBySa40: {
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+  },
+};
+
+const experiences = [
+  {
+    title: 'Lagos City Tour',
+    location: 'Lagos',
+    image: '/images/services/tour-culture.jpg',
+    alt: 'Benjamin with a traveller at a cultural stop in Lagos',
+    body: [
+      'Lagos is Nigeria\'s biggest and most intense city: crowded, energetic, commercial, creative and sometimes overwhelming. A guided day in Lagos can include markets, local food, neighbourhoods, art, waterfront areas, music culture and everyday street life.',
+      'Lagos is much easier with a local guide who understands timing, traffic, transport, photography etiquette and which areas are worth visiting on the day.',
+    ],
+    facts: [
+      'Good for: first-time visitors, culture, food, markets, city life',
+      'Best with: private guide and driver',
+      'Allow: full day',
+    ],
+  },
+  {
+    title: 'Makoko by Boat',
+    location: 'Lagos Lagoon',
+    image: '/images/things-to-do-nigeria/makoko-boats-lagos.webp',
+    alt: 'Wooden boats on the water in Makoko, Lagos',
+    credit: {
+      author: 'boellstiftung',
+      authorUrl: 'https://www.flickr.com/people/44112235@N04',
+      source: 'https://commons.wikimedia.org/wiki/File:2010_Boats_Makoko_Lagos_Nigeria_5342610737.jpg',
+      ...commons.ccBySa20,
+    },
+    body: [
+      'Makoko is one of Lagos\'s most memorable and sensitive places to visit. The community is built around the lagoon, with homes, boats, schools and daily life connected to the water. It should be visited respectfully, ideally through someone with real local contacts.',
+      'This is not a place for casual poverty tourism. The best visits are arranged carefully, with permission, sensitivity and a clear understanding of where visitor payments or donations are going.',
+    ],
+    facts: [
+      'Good for: community visits, photography with care, understanding Lagos beyond the surface',
+      'Best with: a guide who knows the community',
+      'Important: ask before taking photos',
+    ],
+  },
+  {
+    title: 'Nike Art Gallery',
+    location: 'Lagos / Abuja / Nigerian art context',
+    image: '/images/things-to-do-nigeria/nike-art-gallery-nigeria.webp',
+    alt: 'Artworks displayed inside Nike Art Gallery in Abuja',
+    credit: {
+      author: 'Turizimpressions',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:Turizimpressions',
+      source: 'https://commons.wikimedia.org/wiki/File:Nike_art_gallery_Abuja.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'Nike Art Gallery is one of Nigeria\'s best-known cultural stops and gives visitors a strong introduction to Nigerian art, textiles, sculpture and contemporary creativity. It is an easy way to add colour, craft and context to a Lagos itinerary.',
+      'It works well as part of a Lagos day tour, especially when combined with food, markets or a quieter stop after a busy morning. The image here shows the Abuja branch, so Benjamin can help you choose the right Nike Art Gallery stop for your route.',
+    ],
+    facts: [
+      'Good for: art, culture, Nigerian textiles, relaxed sightseeing',
+      'Best combined with: Lagos food stops, Lekki, Makoko or city highlights',
+      'Allow: 1-2 hours',
+    ],
+  },
+  {
+    title: 'Balogun Market',
+    location: 'Lagos Island',
+    image: '/images/things-to-do-nigeria/balogun-market-lagos.webp',
+    alt: 'Crowded street activity at Balogun Market on Lagos Island',
+    credit: {
+      author: 'Yellowcrunchy',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:Yellowcrunchy',
+      source: 'https://commons.wikimedia.org/wiki/File:Balogun_Market,_Lagos_Island_2.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'Balogun Market is dense, loud, hot, crowded and full of energy. It is not a polished tourist market, but that is exactly what makes it interesting. For travellers who want to feel the scale and rhythm of Lagos, it can be one of the most immersive stops in the city.',
+      'A local guide is strongly recommended. Photography should be discreet, and visitors should avoid using large cameras openly in crowded market areas.',
+    ],
+    facts: [
+      'Good for: street life, textiles, local commerce, immersive Lagos',
+      'Best with: a guide who knows the layout',
+      'Important: be careful with photos and valuables',
+    ],
+  },
+  {
+    title: 'Badagry Slave Route',
+    location: 'Badagry, west of Lagos',
+    image: '/images/things-to-do-nigeria/badagry-point-of-no-return.webp',
+    alt: 'The Point of No Return site in Badagry, Lagos State',
+    credit: {
+      author: 'Agbebiyi Adekunle (Tadek Photography)',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:Tadek_Photography',
+      source: 'https://commons.wikimedia.org/wiki/File:Point_of_no_return_Badagry.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'Badagry is one of the most important historical day trips from Lagos. The town has several sites connected to the transatlantic slave trade, including museums, colonial-era buildings, barracoons, the lagoon crossing and the Point of No Return.',
+      'It is a serious and emotional visit rather than a light sightseeing day. The route is best done with a guide who can explain the history clearly and arrange transport between the different stops.',
+    ],
+    facts: [
+      'Good for: history, heritage, serious cultural travel',
+      'Best as: a full-day trip from Lagos',
+      'Allow: a long day because of traffic and distance',
+    ],
+  },
+  {
+    title: 'Abeokuta and Olumo Rock',
+    location: 'Ogun State',
+    image: '/images/things-to-do-nigeria/olumo-rock-abeokuta.webp',
+    alt: 'A wide view of Olumo Rock in Abeokuta, Ogun State',
+    credit: {
+      author: 'Adedayo Adesilola',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:Adedayo_Adesilola',
+      source: 'https://commons.wikimedia.org/wiki/File:Olumo_Rock,_Abeokuta.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'Abeokuta is a worthwhile trip outside Lagos for travellers who want to see a different side of southwest Nigeria. Olumo Rock is the main landmark: a granite outcrop with historical and spiritual significance, plus views over the city.',
+      'Abeokuta can also be combined with the Obasanjo Presidential Library, local religious or cultural experiences, and a slower look at life outside Lagos.',
+    ],
+    facts: [
+      'Good for: short hikes, history, city views, culture outside Lagos',
+      'Best as: day trip or overnight from Lagos',
+      'Transport note: train travel may be possible, but ticket payment can be difficult for foreign visitors',
+    ],
+  },
+  {
+    title: 'Obasanjo Presidential Library',
+    location: 'Abeokuta',
+    image: '/images/things-to-do-nigeria/obasanjo-presidential-library.webp',
+    alt: 'The Olusegun Obasanjo Presidential Library in Abeokuta',
+    credit: {
+      author: 'AVA MULTIMEDIA',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:AVAMULTIMEDIA1',
+      source: 'https://commons.wikimedia.org/wiki/File:Olusegun_Obasanjo_Presidential_Library._Kuto_Abeokuta.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'The Obasanjo Presidential Library is one of Nigeria\'s more unusual modern historical attractions. It gives visitors a way to understand part of Nigeria\'s political history through the life and travels of one of the country\'s best-known leaders.',
+      'It works best as part of an Abeokuta itinerary rather than as a standalone trip from Lagos.',
+    ],
+    facts: [
+      'Good for: Nigerian history, politics, modern Africa',
+      'Best combined with: Olumo Rock',
+      'Allow: 1-2 hours',
+    ],
+  },
+  {
+    title: 'Abuja City Tour and National Mosque',
+    location: 'Abuja',
+    image: '/images/things-to-do-nigeria/abuja-national-mosque.webp',
+    alt: 'The National Mosque in Abuja, Nigeria',
+    credit: {
+      author: 'ola2unjee',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:Ola2unjee',
+      source: 'https://commons.wikimedia.org/wiki/File:National_Mosque_Abuja,_Nigeria.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'Abuja feels very different from Lagos. It is more spacious, planned, quieter and easier to move around, with wide roads and large government districts. It does not have one obvious superstar attraction, but it can be a pleasant contrast after Lagos.',
+      'A guided Abuja day can include the National Mosque, National Christian Centre, city viewpoints, local restaurants, markets and selected neighbourhoods. Visits to religious or government-adjacent sites may require permission, and photography can be sensitive.',
+    ],
+    facts: [
+      'Good for: calmer city experience, architecture, modern Nigeria',
+      'Best with: private transport',
+      'Important: dress respectfully and ask before photographing sensitive sites',
+    ],
+  },
+  {
+    title: 'Kano Durbar Festival',
+    location: 'Kano, Northern Nigeria',
+    image: '/images/things-to-do-nigeria/kano-durbar.webp',
+    alt: 'Horsemen riding during the September 2016 Durbar in Kano',
+    credit: {
+      author: 'DonCamillo',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:DonCamillo',
+      source: 'https://commons.wikimedia.org/wiki/File:Horsemen_during_the_September_2016_Durbar_in_Kano_-_1.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'The Kano Durbar is one of Nigeria\'s great cultural spectacles, with horsemen, traditional dress, royal ceremony, music and large public gatherings around Eid celebrations. UNESCO lists Durbar in Kano as intangible cultural heritage.',
+      'This is not a casual last-minute trip. Festival travel in northern Nigeria needs careful planning, reliable local arrangements, conservative dress and up-to-date safety advice.',
+    ],
+    facts: [
+      'Good for: major cultural festivals, photography, traditional ceremony',
+      'Best for: experienced travellers with local support',
+      'Plan ahead: dates follow the Islamic calendar',
+    ],
+    sourceLink: {
+      href: 'https://ich.unesco.org/en/RL/durbar-in-kano-01895',
+      label: 'UNESCO Durbar in Kano listing',
+    },
+  },
+  {
+    title: 'Ojude Oba Festival',
+    location: 'Ijebu-Ode, Ogun State',
+    image: '/images/things-to-do-nigeria/ojude-oba-festival.webp',
+    alt: 'Horse riders taking part in the Ojude Oba Festival',
+    credit: {
+      author: 'Smilesnmore Digital Photography',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:Smilesnmore_Digital_Photography',
+      source: 'https://commons.wikimedia.org/wiki/File:HORSE_RIDING_AT_THE_OJUDE_OBA_FESTIVAL.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'Ojude Oba is one of southwest Nigeria\'s most colourful cultural festivals. It is held in Ijebu-Ode after Eid al-Kabir and brings together age groups, families, riders, music, fashion and homage to the Awujale of Ijebuland.',
+      'For travellers already in Lagos or southwest Nigeria at the right time of year, it can be a standout cultural experience. Transport, seating, timing and local etiquette should be planned in advance.',
+    ],
+    facts: [
+      'Good for: Yoruba culture, festival photography, traditional dress',
+      'Best with: advance local arrangements',
+      'Plan ahead: festival dates change each year',
+    ],
+    sourceLink: {
+      href: 'https://ojudeoba.com/festival/',
+      label: 'Ojude Oba festival background',
+    },
+  },
+  {
+    title: 'Lagos Food and Restaurants',
+    location: 'Lagos',
+    image: '/images/things-to-do-nigeria/nigerian-jollof-rice.webp',
+    alt: 'A plate of Nigerian jollof rice and fried plantain',
+    credit: {
+      author: 'Lyndadelz',
+      authorUrl: 'https://commons.wikimedia.org/wiki/User:Lyndadelz',
+      source: 'https://commons.wikimedia.org/wiki/File:Jollof_rice_and_plantain.jpg',
+      ...commons.ccBySa40,
+    },
+    body: [
+      'Nigeria is a good country for food, from simple local meals to modern restaurants serving Lagos\'s middle and upper-class dining scene. A guide can help visitors choose places that are clean, reliable, interesting and practical for their route.',
+      'Before sitting down, it is worth checking whether the restaurant accepts cash, Nigerian cards or international cards. Payment can be less straightforward than visitors expect.',
+    ],
+    facts: [
+      'Good for: Nigerian food, casual meals, modern Lagos dining',
+      'Best with: local advice',
+      'Important: confirm payment method before ordering',
+    ],
+  },
+];
+
+const planningItems = [
+  {
+    title: 'Money and payments',
+    body: 'Nigeria uses the naira. Visitors should not assume that every place will accept international cards, and some businesses may not accept cash either. Digital payments from Nigerian bank accounts are very common, which can make payment awkward for foreign travellers. A local guide can help with exchanging cash, understanding fair prices, choosing restaurants, arranging transport and avoiding unnecessary overcharging.',
+  },
+  {
+    title: 'Airport arrival',
+    body: 'Lagos airport can be easier than many visitors expect, but arrival is still smoother with help arranged in advance. A guide can assist with transport into the city, SIM card advice, money exchange guidance and first-day orientation.',
+  },
+  {
+    title: 'Photography',
+    body: 'Photography can be sensitive in Nigeria, especially in Lagos markets, around monuments, government buildings, communities and crowded public places. A phone is usually less intrusive than a large camera. Always ask before photographing people closely.',
+  },
+  {
+    title: 'Best time to visit',
+    body: 'The dry season is usually easier for travel, though Lagos and southern Nigeria can still be hot and humid. November can be a good month because the landscape may be greener after the rains, while February is often dry but hazy.',
+  },
+  {
+    title: 'Visa basics',
+    body: 'Keep visa planning separate from sightseeing planning. Visa rules can change, so check official sources before booking travel. Benjamin can help with visa invitation letter support where relevant.',
+  },
+  {
+    title: 'Why use a local guide?',
+    body: 'Nigeria rewards travellers who are flexible, curious and realistic. It is not always a simple country to explore independently, especially on a short trip. A local guide helps with transport, timing, money, safety, cultural etiquette and choosing the right stops for your interests.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What are the best things to do in Lagos with a guide?',
+    a: 'Good Lagos guide experiences include local markets, Nigerian food, Nike Art Gallery, Makoko by boat, neighbourhood drives, beaches, music culture and practical orientation for first-time visitors. Lagos is much easier with someone who understands traffic, timing and local etiquette.',
+  },
+  {
+    q: 'Can Benjamin help outside Lagos?',
+    a: 'Benjamin is based in Lagos and can help with Lagos tours, arrival support and custom Nigeria planning. For places outside Lagos, message him with your dates and interests so he can explain what is realistic and what support he can provide.',
+  },
+  {
+    q: 'Is Makoko suitable for visitors?',
+    a: 'Makoko should only be visited respectfully and with local contacts. It is a real community, not a tourist attraction. A good visit should be arranged with care, permission and sensitivity.',
+  },
+  {
+    q: 'Is Badagry worth visiting from Lagos?',
+    a: 'Badagry can be a worthwhile day trip for travellers interested in history and the transatlantic slave trade. It is a serious, reflective visit and works best with a guide who can explain the different sites clearly.',
+  },
+  {
+    q: 'Is Nigeria easy to travel independently?',
+    a: 'Some experienced travellers do explore Nigeria independently, but it can be challenging because of traffic, payment issues, transport, local customs and photography sensitivity. A local guide makes a short trip much easier and more productive.',
+  },
+  {
+    q: 'How do I contact Benjamin?',
+    a: `The easiest way is WhatsApp at ${SITE.phoneDisplay}. Send your travel dates, number of travellers, where you arrive in Nigeria, and what you would like to do.`,
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: SITE.siteUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Things to Do in Nigeria',
+      item: canonical,
+    },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogImage={ogImage}
+  ogImageAlt={ogImageAlt}
+  ogType="article"
+  canonical={canonical}
+>
+  <Header />
+  <main>
+    <section class="relative bg-nigeria-deep text-white overflow-hidden" aria-label="Page introduction">
+      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-36 pb-16 md:pb-20">
+        <nav class="text-sm text-white/60 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white">Home</a>
+          <span class="mx-2">/</span>
+          <span class="text-white/80">Things to Do in Nigeria</span>
+        </nav>
+        <div class="adire-divider mb-6"></div>
+        <p class="text-nigeria-sand text-sm font-semibold uppercase tracking-widest mb-3">Experiences</p>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
+          Things to Do in Nigeria
+        </h1>
+        <div class="max-w-3xl space-y-5 text-white/80 text-lg leading-relaxed mb-8">
+          <p>
+            A practical guide to some of the most rewarding Nigeria experiences, from Lagos markets, art galleries and Makoko to Badagry, Abeokuta, Abuja, cultural festivals, food and day trips with a trusted local guide.
+          </p>
+          <p>
+            Nigeria is not always an easy country for first-time visitors, but it is much more rewarding when the trip is planned realistically. Lagos can be intense, busy and slow to move around, while places outside Lagos often feel calmer and more surprising. With a local guide, private transport and clear expectations, Nigeria can offer a strong mix of culture, history, food, markets, festivals and everyday life.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <WhatsAppButton href={thingsToDoWhatsappUrl} label="Plan your Nigeria trip on WhatsApp" />
+          <a href="/lagos-private-guide/" class="inline-flex items-center justify-center gap-2 border-2 border-white/60 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 hover:border-white transition-all duration-200">
+            See Lagos private guide services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28 bg-white" aria-labelledby="experiences-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <div class="adire-divider mx-auto mb-6"></div>
+          <h2 id="experiences-heading" class="section-heading mb-4">Nigeria experiences worth planning well</h2>
+          <p class="section-subheading mx-auto">
+            The best Nigeria trip is not about rushing through a checklist. It is about choosing the right stops for your time, energy, interests and comfort level.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {experiences.map((experience) => (
+            <article class="card-base flex flex-col" aria-labelledby={`${experience.title.toLowerCase().replaceAll(' ', '-')}-heading`}>
+              {experience.image && (
+                <figure>
+                  <div class="relative aspect-[3/2] overflow-hidden">
+                    <img
+                      src={experience.image}
+                      alt={experience.alt}
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover"
+                    />
+                    <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-nigeria-deep text-xs font-semibold px-3 py-1 rounded-full">
+                      {experience.location}
+                    </span>
+                  </div>
+                  {experience.credit && (
+                    <figcaption class="px-5 pt-3">
+                      <ImageCredit credit={experience.credit} />
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+
+              <div class="p-6 flex flex-col flex-1">
+                <p class="text-nigeria-clay text-xs font-semibold uppercase tracking-widest mb-2">{experience.location}</p>
+                <h3 id={`${experience.title.toLowerCase().replaceAll(' ', '-')}-heading`} class="font-display text-xl font-bold text-nigeria-charcoal mb-4">
+                  {experience.title}
+                </h3>
+                <div class="space-y-3 text-gray-600 text-sm leading-relaxed mb-5">
+                  {experience.body.map((paragraph) => <p>{paragraph}</p>)}
+                </div>
+                {experience.sourceLink && (
+                  <a href={experience.sourceLink.href} class="text-nigeria-deep hover:underline font-semibold text-sm mb-5 self-start" target="_blank" rel="noopener noreferrer">
+                    {experience.sourceLink.label}
+                  </a>
+                )}
+                <div class="mt-auto bg-nigeria-cream rounded-xl p-4">
+                  <p class="text-nigeria-charcoal text-xs font-semibold uppercase tracking-widest mb-3">Quick facts</p>
+                  <ul class="space-y-2">
+                    {experience.facts.map((fact) => (
+                      <li class="text-gray-600 text-sm leading-relaxed flex gap-2">
+                        <span class="mt-2 w-1.5 h-1.5 rounded-full bg-nigeria-clay flex-shrink-0" aria-hidden="true"></span>
+                        <span>{fact}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28 bg-nigeria-sand relative overflow-hidden" aria-labelledby="planning-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mb-14">
+          <div class="adire-divider mb-6"></div>
+          <h2 id="planning-heading" class="section-heading mb-4">Practical things to know before visiting Nigeria</h2>
+          <p class="section-subheading">
+            Nigeria can be warm, generous and memorable, but it works best when the practical parts are handled early.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {planningItems.map((item, index) => (
+            <article class="bg-white rounded-2xl p-6 shadow-card">
+              <div class="w-10 h-10 rounded-full bg-nigeria-deep text-white flex items-center justify-center font-display font-bold mb-5">
+                {index + 1}
+              </div>
+              <h3 class="font-display text-xl font-bold text-nigeria-charcoal mb-3">{item.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28 bg-nigeria-deep relative overflow-hidden" aria-labelledby="cta-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div class="adire-divider mx-auto mb-6"></div>
+        <h2 id="cta-heading" class="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-5">
+          Want help planning your Nigeria itinerary?
+        </h2>
+        <p class="text-white/80 text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
+          Benjamin can help you build a realistic Nigeria plan based on your dates, group size and interests. He can help with Lagos day tours, airport arrival support, markets, food, Makoko, Badagry, Abeokuta, Abuja planning and custom Nigeria itineraries.
+        </p>
+        <div class="bg-white/10 border border-white/15 rounded-2xl p-5 text-left mb-8">
+          <p class="text-white/50 text-xs font-semibold uppercase tracking-widest mb-2">Suggested WhatsApp message</p>
+          <p class="text-white/85 text-sm leading-relaxed">{thingsToDoMessage}</p>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <WhatsAppButton href={thingsToDoWhatsappUrl} label="Message Benjamin on WhatsApp" />
+          <a href="/nigeria-visa-invitation-letter/" class="inline-flex items-center justify-center gap-2 border-2 border-white/60 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 hover:border-white transition-all duration-200">
+            Ask about visa invitation letter support
+          </a>
+        </div>
+        <p class="text-white/70 text-sm mt-6">
+          Also see <a href="/lagos-private-guide/" class="underline hover:text-white">Lagos private guide services</a> or the <a href="/contact/" class="underline hover:text-white">contact page</a>.
+        </p>
+      </div>
+    </section>
+
+    <section id="faq" class="py-20 lg:py-28 bg-white" aria-labelledby="faq-heading">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="adire-divider mx-auto mb-6"></div>
+          <h2 id="faq-heading" class="section-heading mb-4">Frequently asked questions</h2>
+          <p class="section-subheading mx-auto">
+            Quick answers about Nigeria sightseeing, Lagos planning and private guide support with Benjamin.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          {faqs.map((item) => (
+            <details class="group bg-nigeria-cream rounded-2xl border border-black/5 shadow-card overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 font-display text-lg font-semibold text-nigeria-charcoal">
+                <span>{item.q}</span>
+                <svg
+                  class="w-5 h-5 flex-shrink-0 text-nigeria-deep transition-transform duration-300 group-open:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 -mt-1 text-gray-600 text-base leading-relaxed">
+                {item.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyWhatsApp />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>
