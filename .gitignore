@@ -17,3 +17,6 @@ Thumbs.db
 # Editor
 .vscode/
 *.swp
+
+# Raw source media (originals kept locally; optimised copies live in public/videos/)
+new videos*/

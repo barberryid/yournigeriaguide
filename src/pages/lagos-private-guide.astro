@@ -28,6 +28,24 @@ const helps = [
     body: 'Benjamin helps you move around Lagos more confidently — understanding transport options, fair prices, timing, and local customs so you can avoid common visitor mistakes.',
   },
 ];
+
+const tourVideos = [
+  {
+    src: '/videos/lagos-group-tour-1.mp4',
+    orientation: 'landscape',
+    caption: 'Out on the Lagos waterways — Benjamin and the group exploring the lagoon and waterside communities by boat, one of the city’s most memorable experiences.',
+  },
+  {
+    src: '/videos/lagos-group-tour-2.mp4',
+    orientation: 'landscape',
+    caption: 'Cruising through the heart of Lagos by water — relaxed, well-organised, and full of the local moments visitors come for, with Benjamin guiding every step of the way.',
+  },
+  {
+    src: '/videos/lagos-group-tour-3.mp4',
+    orientation: 'portrait',
+    caption: 'Benjamin’s own private vehicle — newly added to the service so he can take care of your guiding and comfortable, door-to-door transport together on one simple trip.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -75,13 +93,71 @@ const helps = [
       </div>
     </section>
 
+    <!-- Recent group tour videos -->
+    <section class="py-20 lg:py-28 bg-nigeria-sand relative overflow-hidden" aria-labelledby="tour-heading">
+      <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <div class="adire-divider mx-auto mb-6"></div>
+          <h2 id="tour-heading" class="section-heading mb-4">Fresh from a recent Lagos group tour</h2>
+          <p class="section-subheading mx-auto">
+            In June 2026, Benjamin led a memorable group tour for <strong>66 visitors</strong> across Lagos. Here are a few moments straight from the trip — including his newly added private vehicle — and the same warm, well-organised guiding you can look forward to on your own private tour.
+          </p>
+        </div>
+
+        <!-- Two landscape clips side by side -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          {tourVideos.filter((v) => v.orientation === 'landscape').map((v) => (
+            <figure class="card-base overflow-hidden">
+              <video
+                class="w-full aspect-video bg-black"
+                controls
+                preload="metadata"
+                playsinline
+              >
+                <source src={v.src} type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+              <figcaption class="p-5 text-gray-600 text-sm leading-relaxed">{v.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <!-- Portrait clip, centred -->
+        <div class="flex justify-center">
+          {tourVideos.filter((v) => v.orientation === 'portrait').map((v) => (
+            <figure class="card-base overflow-hidden max-w-xs w-full">
+              <video
+                class="w-full bg-black"
+                style="aspect-ratio: 478 / 850;"
+                controls
+                preload="metadata"
+                playsinline
+              >
+                <source src={v.src} type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+              <figcaption class="p-5 text-gray-600 text-sm leading-relaxed">{v.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <WhatsAppButton label="Plan your own Lagos tour on WhatsApp" />
+        </div>
+      </div>
+    </section>
+
     <!-- Pricing snapshot -->
-    <section class="py-16 bg-nigeria-sand relative overflow-hidden" aria-labelledby="price-heading">
+    <section class="py-16 bg-white relative overflow-hidden" aria-labelledby="price-heading">
       <div class="absolute inset-0 bg-adire-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
       <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 id="price-heading" class="section-heading mb-4">Simple daily pricing</h2>
         <p class="text-gray-700 text-lg leading-relaxed">
           Benjamin's guiding fee is <strong>USD 50 per day</strong>. Extra costs such as transport, meals, entrance fees, accommodation, and special activities are separate. Message Benjamin with your dates, group size, and plans so he can explain what to expect.
+        </p>
+        <p class="text-gray-700 text-lg leading-relaxed mt-5">
+          <strong>New for your trip:</strong> Benjamin now runs his own private vehicle, so on many tours he can take care of guiding and comfortable, reliable transport together in one simple arrangement — no haggling with taxis or working out routes yourself. Ask him for a combined guiding-and-transport rate for your group.
         </p>
       </div>
     </section>
