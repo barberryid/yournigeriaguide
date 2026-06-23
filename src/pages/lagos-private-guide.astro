@@ -55,6 +55,11 @@ const tourVideos = [
     orientation: 'landscape',
     caption: 'Benjamin keeping the group moving smoothly before taking them onward to the Seme border.',
   },
+  {
+    src: '/videos/lagos-group-final-with-benjamin.mp4',
+    orientation: 'landscape',
+    caption: 'The final group video with Benjamin at the end of the June 2026 Lagos tour.',
+  },
 ];
 
 const tourPhotos = [
@@ -70,6 +75,30 @@ const tourPhotos = [
     orientation: 'portrait',
     objectPosition: '50% 28%',
     caption: 'Another group-tour update from the same Lagos trip, captured before the final travel days.',
+  },
+  {
+    src: '/images/lagos-private-guide/lagos-group-final-1.jpeg',
+    alt: 'Final June 2026 Lagos group picture with Benjamin',
+    objectPosition: '50% 50%',
+    caption: 'The final group picture with Benjamin from the June 2026 Lagos tour.',
+  },
+  {
+    src: '/images/lagos-private-guide/lagos-group-final-2.jpeg',
+    alt: 'Visitors gathered with Benjamin during the final Lagos group tour picture',
+    objectPosition: '50% 50%',
+    caption: 'A final group-tour moment with Benjamin and the visitors before the journey continued.',
+  },
+  {
+    src: '/images/lagos-private-guide/lagos-group-final-3.jpeg',
+    alt: 'Benjamin and tour visitors posing together in Lagos',
+    objectPosition: '50% 50%',
+    caption: 'Benjamin with the group during the closing moments of the Lagos tour.',
+  },
+  {
+    src: '/images/lagos-private-guide/lagos-group-final-4.jpeg',
+    alt: 'June 2026 Lagos tour group with Benjamin',
+    objectPosition: '50% 50%',
+    caption: 'Another final group picture from Benjamin\'s June 2026 Lagos tour.',
   },
 ];
 ---
@@ -132,26 +161,63 @@ const tourPhotos = [
           <p class="max-w-3xl mx-auto mt-5 text-base md:text-lg text-gray-700 leading-relaxed">
             In Benjamin's update from the road, he shared another video taken that day: tomorrow was the group's last Lagos tour day, and the following day he would take them back to the Seme border.
           </p>
+          <p class="max-w-3xl mx-auto mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+            This is the final group picture and video with Benjamin.
+          </p>
         </div>
 
-        <!-- Recent tour photos -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {tourPhotos.map((photo) => (
-            <figure class="card-base overflow-hidden">
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                class:list={[
-                  'w-full aspect-square object-cover bg-gray-100',
-                ]}
-                style={photo.objectPosition ? `object-position: ${photo.objectPosition};` : undefined}
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption class="p-5 text-gray-600 text-sm leading-relaxed">{photo.caption}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <!-- Recent tour photo carousel -->
+        <figure class="card-base overflow-hidden mb-6" data-photo-carousel>
+          <div class="relative overflow-hidden bg-gray-100">
+            <div class="flex transition-transform duration-300 ease-out" data-carousel-track>
+              {tourPhotos.map((photo, index) => (
+                <div class="min-w-full" data-carousel-slide data-carousel-caption-text={photo.caption}>
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    class="w-full aspect-[4/3] md:aspect-[16/9] object-cover"
+                    style={photo.objectPosition ? `object-position: ${photo.objectPosition};` : undefined}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              class="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/90 text-nigeria-charcoal shadow-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-nigeria-green"
+              aria-label="Previous tour photo"
+              data-carousel-prev
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              class="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/90 text-nigeria-charcoal shadow-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-nigeria-green"
+              aria-label="Next tour photo"
+              data-carousel-next
+            >
+              ›
+            </button>
+          </div>
+          <figcaption class="p-5">
+            <p class="text-gray-600 text-sm leading-relaxed" data-carousel-caption>{tourPhotos[0].caption}</p>
+            <div class="flex items-center justify-center gap-2 mt-4" aria-label="Tour photo carousel position">
+              {tourPhotos.map((photo, index) => (
+                <button
+                  type="button"
+                  class:list={[
+                    'h-2.5 w-2.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-nigeria-green',
+                    index === 0 ? 'bg-nigeria-green' : 'bg-gray-300',
+                  ]}
+                  aria-label={`Show tour photo ${index + 1}`}
+                  aria-current={index === 0 ? 'true' : 'false'}
+                  data-carousel-dot={index}
+                />
+              ))}
+            </div>
+          </figcaption>
+        </figure>
 
         <!-- Landscape clips side by side -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -230,3 +296,46 @@ const tourPhotos = [
   <Footer />
   <StickyWhatsApp />
 </BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-photo-carousel]').forEach((carousel) => {
+    const track = carousel.querySelector('[data-carousel-track]');
+    const slides = Array.from(carousel.querySelectorAll('[data-carousel-slide]'));
+    const caption = carousel.querySelector('[data-carousel-caption]');
+    const dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
+    const prev = carousel.querySelector('[data-carousel-prev]');
+    const next = carousel.querySelector('[data-carousel-next]');
+    let activeIndex = 0;
+
+    const updateCarousel = () => {
+      if (!track || slides.length === 0) return;
+
+      track.style.transform = `translateX(-${activeIndex * 100}%)`;
+
+      const activeSlide = slides[activeIndex];
+      if (caption && activeSlide?.dataset.carouselCaptionText) {
+        caption.textContent = activeSlide.dataset.carouselCaptionText;
+      }
+
+      dots.forEach((dot, index) => {
+        const isActive = index === activeIndex;
+        dot.classList.toggle('bg-nigeria-green', isActive);
+        dot.classList.toggle('bg-gray-300', !isActive);
+        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+    };
+
+    const showSlide = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+      updateCarousel();
+    };
+
+    prev?.addEventListener('click', () => showSlide(activeIndex - 1));
+    next?.addEventListener('click', () => showSlide(activeIndex + 1));
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+
+    updateCarousel();
+  });
+</script>
