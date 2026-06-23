@@ -68,7 +68,7 @@ const tourPhotos = [
     src: '/images/lagos-private-guide/lagos-group-tour-seme-border-portrait.jpeg',
     alt: 'Benjamin with visitors during the June 2026 Lagos group tour',
     orientation: 'portrait',
-    objectPosition: '50% 30%',
+    objectPosition: '50% 28%',
     caption: 'Another group-tour update from the same Lagos trip, captured before the final travel days.',
   },
 ];
@@ -142,7 +142,7 @@ const tourPhotos = [
                 src={photo.src}
                 alt={photo.alt}
                 class:list={[
-                  'w-full aspect-[4/3] object-cover bg-gray-100',
+                  'w-full aspect-square object-cover bg-gray-100',
                 ]}
                 style={photo.objectPosition ? `object-position: ${photo.objectPosition};` : undefined}
                 loading="lazy"
