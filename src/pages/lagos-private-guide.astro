@@ -45,6 +45,31 @@ const tourVideos = [
     orientation: 'portrait',
     caption: 'Benjamin’s own private vehicle — newly added to the service so he can take care of your guiding and comfortable, door-to-door transport together on one simple trip.',
   },
+  {
+    src: '/videos/lagos-group-tour-seme-border-1.mp4',
+    orientation: 'landscape',
+    caption: 'Another video shared from the June 2026 group tour as the trip moved toward its final Lagos day.',
+  },
+  {
+    src: '/videos/lagos-group-tour-seme-border-2.mp4',
+    orientation: 'landscape',
+    caption: 'Benjamin keeping the group moving smoothly before taking them onward to the Seme border.',
+  },
+];
+
+const tourPhotos = [
+  {
+    src: '/images/lagos-private-guide/lagos-group-tour-seme-border-landscape.jpeg',
+    alt: 'Visitors on Benjamin\'s June 2026 Lagos group tour',
+    orientation: 'landscape',
+    caption: 'A fresh moment from the June 2026 Lagos group tour with Benjamin and his visitors.',
+  },
+  {
+    src: '/images/lagos-private-guide/lagos-group-tour-seme-border-portrait.jpeg',
+    alt: 'Benjamin with visitors during the June 2026 Lagos group tour',
+    orientation: 'portrait',
+    caption: 'Another group-tour update from the same Lagos trip, captured before the final travel days.',
+  },
 ];
 ---
 
@@ -103,9 +128,31 @@ const tourVideos = [
           <p class="section-subheading mx-auto">
             In June 2026, Benjamin led a memorable group tour for <strong>66 visitors</strong> across Lagos. Here are a few moments straight from the trip — including his newly added private vehicle — and the same warm, well-organised guiding you can look forward to on your own private tour.
           </p>
+          <p class="max-w-3xl mx-auto mt-5 text-base md:text-lg text-gray-700 leading-relaxed">
+            In Benjamin's update from the road, he shared another video taken that day: tomorrow was the group's last Lagos tour day, and the following day he would take them back to the Seme border.
+          </p>
         </div>
 
-        <!-- Two landscape clips side by side -->
+        <!-- Recent tour photos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          {tourPhotos.map((photo) => (
+            <figure class="card-base overflow-hidden">
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                class:list={[
+                  'w-full object-cover bg-gray-100',
+                  photo.orientation === 'portrait' ? 'aspect-[3/4]' : 'aspect-[4/3]',
+                ]}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="p-5 text-gray-600 text-sm leading-relaxed">{photo.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <!-- Landscape clips side by side -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {tourVideos.filter((v) => v.orientation === 'landscape').map((v) => (
             <figure class="card-base overflow-hidden">
